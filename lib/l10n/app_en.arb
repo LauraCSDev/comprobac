@@ -1,0 +1,127 @@
+{
+    "@@locale": "en",
+    "appTitle": "Comprobac",
+    "@appTitle": {
+        "description": "App title"
+    },
+    "loginTitle": "Login",
+    "@loginTitle": {
+        "description": "Login page title"
+    },
+    "loginButton": "Sign In",
+    "@loginButton": {
+        "description": "Login button text"
+    },
+    "onboardingTitle1": "Avoid bank fraud",
+    "@onboardingTitle1": {
+        "description": "Onboarding page 1 title"
+    },
+    "onboardingDesc1": "Never share your bank details with strangers.",
+    "@onboardingDesc1": {
+        "description": "Onboarding page 1 description"
+    },
+    "onboardingTitle2": "Verify references",
+    "@onboardingTitle2": {
+        "description": "Onboarding page 2 title"
+    },
+    "onboardingDesc2": "Make sure to validate the receipt before accepting a transfer.",
+    "@onboardingDesc2": {
+        "description": "Onboarding page 2 description"
+    },
+    "onboardingTitle3": "Report suspicious activity",
+    "@onboardingTitle3": {
+        "description": "Onboarding page 3 title"
+    },
+    "onboardingDesc3": "If you detect anything unusual, report it to your bank immediately.",
+    "@onboardingDesc3": {
+        "description": "Onboarding page 3 description"
+    },
+    "homeMenuValidate": "Validate transaction",
+    "@homeMenuValidate": {
+        "description": "Home menu validate transaction option"
+    },
+    "validationFormTitle": "Validate Receipt",
+    "@validationFormTitle": {
+        "description": "Validation form title"
+    },
+    "validationFormReference": "Receipt Number",
+    "@validationFormReference": {
+        "description": "Validation form reference number label"
+    },
+    "validationFormAccount": "Account Number to Credit",
+    "@validationFormAccount": {
+        "description": "Validation form account number label"
+    },
+    "validationFormMonth": "Select Month",
+    "@validationFormMonth": {
+        "description": "Validation form select month label"
+    },
+    "validationFormButton": "Validate",
+    "@validationFormButton": {
+        "description": "Validation form button text"
+    },
+    "validationResultValid": "Valid receipt",
+    "@validationResultValid": {
+        "description": "Validation result valid message"
+    },
+    "validationResultInvalid": "Invalid receipt",
+    "@validationResultInvalid": {
+        "description": "Validation result invalid message"
+    },
+    "logout": "Logout",
+    "@logout": {
+        "description": "Logout button text"
+    },
+    "january": "January",
+    "@january": {
+        "description": "Month January"
+    },
+    "february": "February",
+    "@february": {
+        "description": "Month February"
+    },
+    "march": "March",
+    "@march": {
+        "description": "Month March"
+    },
+    "april": "April",
+    "@april": {
+        "description": "Month April"
+    },
+    "may": "May",
+    "@may": {
+        "description": "Month May"
+    },
+    "june": "June",
+    "@june": {
+        "description": "Month June"
+    },
+    "july": "July",
+    "@july": {
+        "description": "Month July"
+    },
+    "august": "August",
+    "@august": {
+        "description": "Month August"
+    },
+    "september": "September",
+    "@september": {
+        "description": "Month September"
+    },
+    "october": "October",
+    "@october": {
+        "description": "Month October"
+    },
+    "november": "November",
+    "@november": {
+        "description": "Month November"
+    },
+    "december": "December",
+    "@december": {
+        "description": "Month December"
+    },
+    "fieldRequired": "This field is required",
+    "@fieldRequired": {
+        "description": "Field required validation message"
+    }
+}

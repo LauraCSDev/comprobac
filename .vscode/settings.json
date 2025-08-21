@@ -1,0 +1,19 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/3.29.3",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.rulers": [
+      160
+    ],
+    "editor.wordWrapColumn": 160,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "always",
+      "source.sortMembers": "never"
+    }
+  },
+  "dart.lineLength": 160,
+  "java.configuration.updateBuildConfiguration": "automatic"
+}

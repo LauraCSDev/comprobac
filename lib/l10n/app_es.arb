@@ -1,0 +1,127 @@
+{
+    "@@locale": "es",
+    "appTitle": "Comprobac",
+    "@appTitle": {
+        "description": "Título de la app"
+    },
+    "loginTitle": "Iniciar sesión",
+    "@loginTitle": {
+        "description": "Título de la página de login"
+    },
+    "loginButton": "Entrar",
+    "@loginButton": {
+        "description": "Texto del botón de login"
+    },
+    "onboardingTitle1": "Evita fraudes bancarios",
+    "@onboardingTitle1": {
+        "description": "Título onboarding 1"
+    },
+    "onboardingDesc1": "Nunca compartas tus datos bancarios con desconocidos.",
+    "@onboardingDesc1": {
+        "description": "Descripción onboarding 1"
+    },
+    "onboardingTitle2": "Verifica referencias",
+    "@onboardingTitle2": {
+        "description": "Título onboarding 2"
+    },
+    "onboardingDesc2": "Asegúrate de validar el comprobante antes de aceptar una transferencia.",
+    "@onboardingDesc2": {
+        "description": "Descripción onboarding 2"
+    },
+    "onboardingTitle3": "Reporta actividades sospechosas",
+    "@onboardingTitle3": {
+        "description": "Título onboarding 3"
+    },
+    "onboardingDesc3": "Si detectas algo inusual, repórtalo a tu banco de inmediato.",
+    "@onboardingDesc3": {
+        "description": "Descripción onboarding 3"
+    },
+    "homeMenuValidate": "Validar transacción",
+    "@homeMenuValidate": {
+        "description": "Opción validar transacción en menú principal"
+    },
+    "validationFormTitle": "Validar Comprobante",
+    "@validationFormTitle": {
+        "description": "Título del formulario de validación"
+    },
+    "validationFormReference": "Nº Comprobante",
+    "@validationFormReference": {
+        "description": "Etiqueta número de comprobante"
+    },
+    "validationFormAccount": "Nº Cuenta Acreditarse",
+    "@validationFormAccount": {
+        "description": "Etiqueta número de cuenta a acreditarse"
+    },
+    "validationFormMonth": "Seleccionar Mes",
+    "@validationFormMonth": {
+        "description": "Etiqueta seleccionar mes"
+    },
+    "validationFormButton": "Validar",
+    "@validationFormButton": {
+        "description": "Texto del botón de validar"
+    },
+    "validationResultValid": "Comprobante válido",
+    "@validationResultValid": {
+        "description": "Mensaje comprobante válido"
+    },
+    "validationResultInvalid": "Comprobante inválido",
+    "@validationResultInvalid": {
+        "description": "Mensaje comprobante inválido"
+    },
+    "logout": "Cerrar sesión",
+    "@logout": {
+        "description": "Texto botón cerrar sesión"
+    },
+    "january": "Enero",
+    "@january": {
+        "description": "Mes enero"
+    },
+    "february": "Febrero",
+    "@february": {
+        "description": "Mes febrero"
+    },
+    "march": "Marzo",
+    "@march": {
+        "description": "Mes marzo"
+    },
+    "april": "Abril",
+    "@april": {
+        "description": "Mes abril"
+    },
+    "may": "Mayo",
+    "@may": {
+        "description": "Mes mayo"
+    },
+    "june": "Junio",
+    "@june": {
+        "description": "Mes junio"
+    },
+    "july": "Julio",
+    "@july": {
+        "description": "Mes julio"
+    },
+    "august": "Agosto",
+    "@august": {
+        "description": "Mes agosto"
+    },
+    "september": "Septiembre",
+    "@september": {
+        "description": "Mes septiembre"
+    },
+    "october": "Octubre",
+    "@october": {
+        "description": "Mes octubre"
+    },
+    "november": "Noviembre",
+    "@november": {
+        "description": "Mes noviembre"
+    },
+    "december": "Diciembre",
+    "@december": {
+        "description": "Mes diciembre"
+    },
+    "fieldRequired": "Este campo es requerido",
+    "@fieldRequired": {
+        "description": "Mensaje de campo requerido"
+    }
+}

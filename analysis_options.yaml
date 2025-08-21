@@ -1,0 +1,15 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    unreachable_switch_default: ignore
+  exclude:
+    - lib/resources/**
+    - lib/localization/l10n/**
+
+linter:
+  rules:
+    constant_identifier_names: false
+    prefer_single_quotes: true
+    sort_pub_dependencies: true
+    sort_child_properties_last: true
