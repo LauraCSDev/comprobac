@@ -24,73 +24,104 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "appTitle": MessageLookupByLibrary.simpleMessage("Comprobac"),
-    "april": MessageLookupByLibrary.simpleMessage("Abril"),
-    "august": MessageLookupByLibrary.simpleMessage("Agosto"),
-    "december": MessageLookupByLibrary.simpleMessage("Diciembre"),
-    "february": MessageLookupByLibrary.simpleMessage("Febrero"),
-    "fieldRequired": MessageLookupByLibrary.simpleMessage(
-      "Este campo es requerido",
-    ),
-    "homeHistoryTitle": MessageLookupByLibrary.simpleMessage(
-      "Histórico de validaciones",
-    ),
-    "homeMenuServices": MessageLookupByLibrary.simpleMessage("Servicios"),
-    "homeMenuValidate": MessageLookupByLibrary.simpleMessage(
-      "Validar transacción",
-    ),
-    "homeNoTransactions": MessageLookupByLibrary.simpleMessage(
-      "No hay transacciones.",
-    ),
-    "homeReference": m0,
-    "homeWelcome": MessageLookupByLibrary.simpleMessage("¡Bienvenido!"),
-    "january": MessageLookupByLibrary.simpleMessage("Enero"),
-    "july": MessageLookupByLibrary.simpleMessage("Julio"),
-    "june": MessageLookupByLibrary.simpleMessage("Junio"),
-    "loginButton": MessageLookupByLibrary.simpleMessage("Entrar"),
-    "loginTitle": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
-    "logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
-    "march": MessageLookupByLibrary.simpleMessage("Marzo"),
-    "may": MessageLookupByLibrary.simpleMessage("Mayo"),
-    "november": MessageLookupByLibrary.simpleMessage("Noviembre"),
-    "october": MessageLookupByLibrary.simpleMessage("Octubre"),
-    "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
-      "Nunca compartas tus datos bancarios con desconocidos.",
-    ),
-    "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
-      "Asegúrate de validar el comprobante antes de aceptar una transferencia.",
-    ),
-    "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
-      "Si detectas algo inusual, repórtalo a tu banco de inmediato.",
-    ),
-    "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
-      "Evita fraudes bancarios",
-    ),
-    "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
-      "Verifica referencias",
-    ),
-    "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
-      "Reporta actividades sospechosas",
-    ),
-    "september": MessageLookupByLibrary.simpleMessage("Septiembre"),
-    "validationFormAccount": MessageLookupByLibrary.simpleMessage(
-      "Nº Cuenta Acreditarse",
-    ),
-    "validationFormButton": MessageLookupByLibrary.simpleMessage("Validar"),
-    "validationFormMonth": MessageLookupByLibrary.simpleMessage(
-      "Seleccionar Mes",
-    ),
-    "validationFormReference": MessageLookupByLibrary.simpleMessage(
-      "Nº Comprobante",
-    ),
-    "validationFormTitle": MessageLookupByLibrary.simpleMessage(
-      "Validar Comprobante",
-    ),
-    "validationResultInvalid": MessageLookupByLibrary.simpleMessage(
-      "Comprobante inválido",
-    ),
-    "validationResultValid": MessageLookupByLibrary.simpleMessage(
-      "Comprobante válido",
-    ),
-  };
+        "appTitle": MessageLookupByLibrary.simpleMessage("Comprobac"),
+        "april": MessageLookupByLibrary.simpleMessage("Abril"),
+        "august": MessageLookupByLibrary.simpleMessage("Agosto"),
+        "bacCodeLabel": MessageLookupByLibrary.simpleMessage(
+          "Ingrese su código BAC de 6 dígitos",
+        ),
+        "bacCodeLoginError": MessageLookupByLibrary.simpleMessage(
+          "Login fallido. Verifica tu código BAC.",
+        ),
+        "bacCodeOnlyNumbersError": MessageLookupByLibrary.simpleMessage(
+          "El código BAC solo debe contener números",
+        ),
+        "bacCodeSixDigitsError": MessageLookupByLibrary.simpleMessage(
+          "El código BAC debe tener 6 dígitos",
+        ),
+        "bacCodeTitle": MessageLookupByLibrary.simpleMessage("Código BAC"),
+        "december": MessageLookupByLibrary.simpleMessage("Diciembre"),
+        "february": MessageLookupByLibrary.simpleMessage("Febrero"),
+        "fieldRequired": MessageLookupByLibrary.simpleMessage(
+          "Este campo es requerido",
+        ),
+        "homeHistoryTitle": MessageLookupByLibrary.simpleMessage(
+          "Histórico de validaciones",
+        ),
+        "homeMenuServices": MessageLookupByLibrary.simpleMessage("Servicios"),
+        "homeMenuValidate": MessageLookupByLibrary.simpleMessage(
+          "Validar transacción",
+        ),
+        "homeNoTransactions": MessageLookupByLibrary.simpleMessage(
+          "No hay transacciones.",
+        ),
+        "homeReference": m0,
+        "homeWelcome": MessageLookupByLibrary.simpleMessage("¡Bienvenido!"),
+        "january": MessageLookupByLibrary.simpleMessage("Enero"),
+        "july": MessageLookupByLibrary.simpleMessage("Julio"),
+        "june": MessageLookupByLibrary.simpleMessage("Junio"),
+        "loginButton": MessageLookupByLibrary.simpleMessage("Entrar"),
+        "loginTitle": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
+        "march": MessageLookupByLibrary.simpleMessage("Marzo"),
+        "may": MessageLookupByLibrary.simpleMessage("Mayo"),
+        "november": MessageLookupByLibrary.simpleMessage("Noviembre"),
+        "october": MessageLookupByLibrary.simpleMessage("Octubre"),
+        "onboardingDesc1": MessageLookupByLibrary.simpleMessage(
+          "Nunca compartas tus datos bancarios con desconocidos.",
+        ),
+        "onboardingDesc2": MessageLookupByLibrary.simpleMessage(
+          "Asegúrate de validar el comprobante antes de aceptar una transferencia.",
+        ),
+        "onboardingDesc3": MessageLookupByLibrary.simpleMessage(
+          "Si detectas algo inusual, repórtalo a tu banco de inmediato.",
+        ),
+        "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
+          "Evita fraudes bancarios",
+        ),
+        "onboardingTitle2": MessageLookupByLibrary.simpleMessage(
+          "Verifica referencias",
+        ),
+        "onboardingTitle3": MessageLookupByLibrary.simpleMessage(
+          "Reporta actividades sospechosas",
+        ),
+        "september": MessageLookupByLibrary.simpleMessage("Septiembre"),
+        "validationFormAccount": MessageLookupByLibrary.simpleMessage(
+          "Nº Cuenta Acreditarse",
+        ),
+        "validationFormButton": MessageLookupByLibrary.simpleMessage("Validar"),
+        "validationFormMonth": MessageLookupByLibrary.simpleMessage(
+          "Seleccionar Mes",
+        ),
+        "validationFormReference": MessageLookupByLibrary.simpleMessage(
+          "Nº Comprobante",
+        ),
+        "validationFormTitle": MessageLookupByLibrary.simpleMessage(
+          "Validar Comprobante",
+        ),
+        "validationResultInvalid": MessageLookupByLibrary.simpleMessage(
+          "Comprobante inválido",
+        ),
+        "validationResultValid": MessageLookupByLibrary.simpleMessage(
+          "Comprobante válido",
+        ),
+        "sinpeMovilLabel": MessageLookupByLibrary.simpleMessage(
+          "Es SINPE Móvil",
+        ),
+        "validationFormDay": MessageLookupByLibrary.simpleMessage(
+          "Seleccionar Día",
+        ),
+        "sinpeMovilDateInvalid": MessageLookupByLibrary.simpleMessage(
+          "Los primeros 8 dígitos del comprobante no corresponden a la fecha seleccionada",
+        ),
+        "sinpeMovilValid": MessageLookupByLibrary.simpleMessage(
+          "Comprobante SINPE Móvil válido: la fecha coincide",
+        ),
+        "sinpeMovilEntityCode": MessageLookupByLibrary.simpleMessage(
+          "Código de entidad financiera",
+        ),
+        "sinpeMovilMinDigits": MessageLookupByLibrary.simpleMessage(
+          "El comprobante SINPE Móvil debe tener al menos 11 dígitos",
+        ),
+      };
 }

@@ -20,3 +20,8 @@ final transactionDetailProvider = FutureProvider.autoDispose<TransactionDetailMo
 });
 
 final selectedTransactionProvider = StateProvider<TransactionDetailModel?>((ref) => null);
+
+/// Provider para el resultado de validación SINPE Móvil.
+/// isValid: si los primeros 8 dígitos coinciden con la fecha.
+/// entityCode: los 3 dígitos siguientes (código de entidad financiera).
+final sinpeMovilResultProvider = StateProvider<({bool isValid, String entityCode})?>((ref) => null);

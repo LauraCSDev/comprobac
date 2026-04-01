@@ -2,15 +2,17 @@
 class User {
   final String username;
   final String password;
+  final String codigoBac;
 
-  /// Crea un usuario con [username] y [password].
-  const User({required this.username, required this.password});
+  /// Crea un usuario con [username], [password] y [codigoBac].
+  const User({required this.username, required this.password, required this.codigoBac});
 
   /// Crea un usuario a partir de un JSON.
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       username: json['username'] as String,
       password: json['password'] as String,
+      codigoBac: json['codigoBac'] as String,
     );
   }
 }

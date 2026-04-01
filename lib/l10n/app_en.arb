@@ -123,5 +123,49 @@
     "fieldRequired": "This field is required",
     "@fieldRequired": {
         "description": "Field required validation message"
+    },
+    "bacCodeTitle": "BAC Code",
+    "@bacCodeTitle": {
+        "description": "Title for BAC code"
+    },
+    "bacCodeLabel": "Enter your 6-digit BAC code",
+    "@bacCodeLabel": {
+        "description": "Label for BAC code field"
+    },
+    "bacCodeSixDigitsError": "BAC code must have 6 digits",
+    "@bacCodeSixDigitsError": {
+        "description": "Error when BAC code doesn't have 6 digits"
+    },
+    "bacCodeOnlyNumbersError": "BAC code must contain only numbers",
+    "@bacCodeOnlyNumbersError": {
+        "description": "Error when BAC code contains non-numeric characters"
+    },
+    "bacCodeLoginError": "Login failed. Verify your BAC code.",
+    "@bacCodeLoginError": {
+        "description": "BAC code login error"
+    },
+    "sinpeMovilLabel": "Is SINPE Móvil",
+    "@sinpeMovilLabel": {
+        "description": "Label for SINPE Móvil field"
+    },
+    "validationFormDay": "Select Day",
+    "@validationFormDay": {
+        "description": "Select day label"
+    },
+    "sinpeMovilDateInvalid": "The first 8 digits of the receipt do not match the selected date",
+    "@sinpeMovilDateInvalid": {
+        "description": "SINPE Móvil date validation error"
+    },
+    "sinpeMovilValid": "Valid SINPE Móvil receipt: date matches",
+    "@sinpeMovilValid": {
+        "description": "SINPE Móvil valid message"
+    },
+    "sinpeMovilEntityCode": "Financial entity code",
+    "@sinpeMovilEntityCode": {
+        "description": "SINPE financial entity code label"
+    },
+    "sinpeMovilMinDigits": "SINPE Móvil receipt must have at least 11 digits",
+    "@sinpeMovilMinDigits": {
+        "description": "Minimum digits error for SINPE Móvil"
     }
 }

@@ -1,10 +1,12 @@
 [
     {
         "username": "admin",
-        "password": "admin"
+        "password": "admin",
+        "codigoBac": "123456"
     },
     {
         "username": "user1",
-        "password": "1234"
+        "password": "1234",
+        "codigoBac": "654321"
     }
 ]

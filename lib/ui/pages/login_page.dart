@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app_localizations_ext.dart';
 import '../../providers/session_provider.dart';
 import '../../resources/resources.dart';
 import '../widgets/full_screen_template.dart';
@@ -17,92 +18,215 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController codigoBacController = TextEditingController();
   bool isLoading = false;
+  String? errorText;
 
   @override
   void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
+    codigoBacController.dispose();
     super.dispose();
+  }
+
+  String? validateBacCode(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Este campo es requerido';
+    }
+    if (value.trim().length != 6) {
+      return 'El código BAC debe tener 6 dígitos';
+    }
+    if (!RegExp(r'^\d{6}$').hasMatch(value.trim())) {
+      return 'El código BAC solo debe contener números';
+    }
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
-    return FullScreenTemplate(
-      content: Center(
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.zero,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 2 / 3,
-                  child: Image.asset(
-                    Logo.logo,
-                    fit: BoxFit.fitWidth,
+    try {
+      final localizations = context.localizations;
+
+      return FullScreenTemplate(
+        content: Center(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.zero,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    child: Image.asset(
+                      Logo.logo,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
-              ),
-              Spacing.medium40,
-              InputText(
-                labelText: 'Username',
-                controller: usernameController,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Este campo es requerido';
-                  }
-                  return null;
-                },
-              ),
-              Spacing.medium16,
-              InputText(
-                labelText: 'Password',
-                obscureText: true,
-                controller: passwordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Este campo es requerido';
-                  }
-                  return null;
-                },
-              ),
-              Spacing.medium32,
-              BacPrimaryButton(
-                onPressed: () {
-                  FocusScope.of(context).unfocus();
-                  if (!formKey.currentState!.validate()) return;
-                  if (!mounted) return;
-                  setState(() => isLoading = true);
-                  final pushReplacementNamed = GoRouter.of(context).pushReplacementNamed;
-                  Future.microtask(() async {
-                    final success = await ref.read(sessionProvider.notifier).login(
-                          username: usernameController.text.trim(),
-                          password: passwordController.text,
-                        );
+                Spacing.medium40,
+                H3(
+                  localizations.bacCodeTitle,
+                ),
+                Spacing.medium16,
+                InputToken(
+                  length: 6,
+                  controller: codigoBacController,
+                  label: localizations.bacCodeLabel,
+                  errorText: errorText,
+                  showIconButton: false,
+                  onChanged: (value) {
+                    setState(() {
+                      errorText = validateBacCode(value);
+                    });
+                  },
+                ),
+                Spacing.medium32,
+                BacPrimaryButton(
+                  onPressed: () async {
                     if (!mounted) return;
-                    setState(() => isLoading = false);
-                    if (success == true) {
-                      pushReplacementNamed('Onboarding');
-                    } else {
-                      BacSnackbarUtils.showSnackbar(
-                        snackbar: const BacSnackbar.error(
-                          message: 'Login fallido. Verifica tus credenciales.',
-                        ),
-                      );
+                    FocusScope.of(context).unfocus();
+                    // Validate the BAC code before proceeding
+                    final validation = validateBacCode(codigoBacController.text);
+                    if (validation != null) {
+                      setState(() {
+                        errorText = validation;
+                      });
+                      return;
                     }
-                  });
-                },
-                text: 'Login',
-                isLoading: isLoading,
-              ),
-            ],
+
+                    if (!mounted) return;
+                    setState(() => isLoading = true);
+
+                    try {
+                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(
+                            codigoBac: codigoBacController.text.trim(),
+                          );
+                      if (!mounted) return;
+                      setState(() => isLoading = false);
+
+                      if (success == true) {
+                        if (mounted) {
+                          context.pushReplacementNamed('Onboarding');
+                        }
+                      } else {
+                        if (mounted) {
+                          BacSnackbarUtils.showSnackbar(
+                            snackbar: BacSnackbar.error(
+                              message: localizations.bacCodeLoginError,
+                            ),
+                          );
+                        }
+                      }
+                    } catch (e) {
+                      if (!mounted) return;
+                      setState(() => isLoading = false);
+                      if (mounted) {
+                        BacSnackbarUtils.showSnackbar(
+                          snackbar: const BacSnackbar.error(
+                            message: 'Error de conexión. Inténtalo de nuevo.',
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  text: localizations.loginButton,
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      // Fallback UI with hardcoded Spanish text
+      return FullScreenTemplate(
+        content: Center(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.zero,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    child: Image.asset(
+                      Logo.logo,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ),
+                Spacing.medium40,
+                const H3('Código BAC'),
+                Spacing.medium16,
+                InputToken(
+                  length: 6,
+                  controller: codigoBacController,
+                  label: 'Ingrese su código BAC de 6 dígitos',
+                  errorText: errorText,
+                  showIconButton: false,
+                  onChanged: (value) {
+                    setState(() {
+                      errorText = validateBacCode(value);
+                    });
+                  },
+                ),
+                Spacing.medium32,
+                BacPrimaryButton(
+                  onPressed: () async {
+                    try {
+                      if (!mounted) return;
+                      FocusScope.of(context).unfocus();
+                      final validation = validateBacCode(codigoBacController.text);
+                      if (validation != null) {
+                        if (mounted) {
+                          setState(() {
+                            errorText = validation;
+                          });
+                        }
+                        return;
+                      }
+
+                      if (!mounted) return;
+                      setState(() => isLoading = true);
+                      final pushReplacementNamed = context.pushReplacementNamed;
+
+                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(
+                            codigoBac: codigoBacController.text.trim(),
+                          );
+                      if (!mounted) return;
+                      setState(() => isLoading = false);
+                      if (success == true) {
+                        pushReplacementNamed('Onboarding');
+                      } else {
+                        if (mounted) {
+                          BacSnackbarUtils.showSnackbar(
+                            snackbar: const BacSnackbar.error(
+                              message: 'Login fallido. Verifica tu código BAC.',
+                            ),
+                          );
+                        }
+                      }
+                    } catch (e) {
+                      if (!mounted) return;
+                      setState(() => isLoading = false);
+                      if (mounted) {
+                        BacSnackbarUtils.showSnackbar(
+                          snackbar: const BacSnackbar.error(
+                            message: 'Error de conexión. Inténtalo de nuevo.',
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  text: 'Entrar',
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

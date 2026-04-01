@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../datasources/user_datasource.dart';
 // ...existing code...
 import '../repositories/user_repository.dart';
-import '../datasources/user_datasource.dart';
 
 /// StateNotifier para manejar la sesión de usuario.
 class SessionNotifier extends StateNotifier<bool> {
@@ -13,6 +14,13 @@ class SessionNotifier extends StateNotifier<bool> {
   /// Realiza login y actualiza el estado de sesión.
   Future<bool> login({required String username, required String password}) async {
     final isValid = await userRepository.validateUser(username, password);
+    state = isValid;
+    return isValid;
+  }
+
+  /// Realiza login usando código BAC de 6 dígitos.
+  Future<bool> loginWithBacCode({required String codigoBac}) async {
+    final isValid = await userRepository.validateBacCode(codigoBac);
     state = isValid;
     return isValid;
   }

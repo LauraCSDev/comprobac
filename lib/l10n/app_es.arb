@@ -123,5 +123,49 @@
     "fieldRequired": "Este campo es requerido",
     "@fieldRequired": {
         "description": "Mensaje de campo requerido"
+    },
+    "bacCodeTitle": "Código BAC",
+    "@bacCodeTitle": {
+        "description": "Título para código BAC"
+    },
+    "bacCodeLabel": "Ingrese su código BAC de 6 dígitos",
+    "@bacCodeLabel": {
+        "description": "Etiqueta para campo código BAC"
+    },
+    "bacCodeSixDigitsError": "El código BAC debe tener 6 dígitos",
+    "@bacCodeSixDigitsError": {
+        "description": "Error cuando código BAC no tiene 6 dígitos"
+    },
+    "bacCodeOnlyNumbersError": "El código BAC solo debe contener números",
+    "@bacCodeOnlyNumbersError": {
+        "description": "Error cuando código BAC contiene caracteres no numéricos"
+    },
+    "bacCodeLoginError": "Login fallido. Verifica tu código BAC.",
+    "@bacCodeLoginError": {
+        "description": "Error de login con código BAC"
+    },
+    "sinpeMovilLabel": "Es SINPE Móvil",
+    "@sinpeMovilLabel": {
+        "description": "Etiqueta para campo SINPE Móvil"
+    },
+    "validationFormDay": "Seleccionar Día",
+    "@validationFormDay": {
+        "description": "Etiqueta seleccionar día"
+    },
+    "sinpeMovilDateInvalid": "Los primeros 8 dígitos del comprobante no corresponden a la fecha seleccionada",
+    "@sinpeMovilDateInvalid": {
+        "description": "Error de validación SINPE Móvil fecha"
+    },
+    "sinpeMovilValid": "Comprobante SINPE Móvil válido: la fecha coincide",
+    "@sinpeMovilValid": {
+        "description": "Mensaje SINPE Móvil válido"
+    },
+    "sinpeMovilEntityCode": "Código de entidad financiera",
+    "@sinpeMovilEntityCode": {
+        "description": "Etiqueta código de entidad financiera SINPE"
+    },
+    "sinpeMovilMinDigits": "El comprobante SINPE Móvil debe tener al menos 11 dígitos",
+    "@sinpeMovilMinDigits": {
+        "description": "Error mínimo de dígitos para SINPE Móvil"
     }
 }

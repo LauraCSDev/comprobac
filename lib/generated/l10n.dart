@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -28,9 +29,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -79,8 +78,7 @@ class S {
     return Intl.message(
       'Reference: $reference',
       name: 'homeReference',
-      desc:
-          'Label for transaction reference in the list, with variable {reference}',
+      desc: 'Label for transaction reference in the list, with variable {reference}',
       args: [reference],
     );
   }
@@ -370,6 +368,56 @@ class S {
     );
   }
 
+  /// `BAC Code`
+  String get bacCodeTitle {
+    return Intl.message(
+      'BAC Code',
+      name: 'bacCodeTitle',
+      desc: 'Title for BAC code',
+      args: [],
+    );
+  }
+
+  /// `Enter your 6-digit BAC code`
+  String get bacCodeLabel {
+    return Intl.message(
+      'Enter your 6-digit BAC code',
+      name: 'bacCodeLabel',
+      desc: 'Label for BAC code field',
+      args: [],
+    );
+  }
+
+  /// `BAC code must have 6 digits`
+  String get bacCodeSixDigitsError {
+    return Intl.message(
+      'BAC code must have 6 digits',
+      name: 'bacCodeSixDigitsError',
+      desc: 'Error when BAC code doesn\'t have 6 digits',
+      args: [],
+    );
+  }
+
+  /// `BAC code must contain only numbers`
+  String get bacCodeOnlyNumbersError {
+    return Intl.message(
+      'BAC code must contain only numbers',
+      name: 'bacCodeOnlyNumbersError',
+      desc: 'Error when BAC code contains non-numeric characters',
+      args: [],
+    );
+  }
+
+  /// `Login failed. Verify your BAC code.`
+  String get bacCodeLoginError {
+    return Intl.message(
+      'Login failed. Verify your BAC code.',
+      name: 'bacCodeLoginError',
+      desc: 'BAC code login error',
+      args: [],
+    );
+  }
+
   /// `Welcome!`
   String get homeWelcome {
     return Intl.message(
@@ -386,6 +434,66 @@ class S {
       'Services',
       name: 'homeMenuServices',
       desc: 'Menu option for services on the home page',
+      args: [],
+    );
+  }
+
+  /// `Is SINPE Móvil`
+  String get sinpeMovilLabel {
+    return Intl.message(
+      'Is SINPE Móvil',
+      name: 'sinpeMovilLabel',
+      desc: 'Label for SINPE Móvil field',
+      args: [],
+    );
+  }
+
+  /// `Select Day`
+  String get validationFormDay {
+    return Intl.message(
+      'Select Day',
+      name: 'validationFormDay',
+      desc: 'Select day label',
+      args: [],
+    );
+  }
+
+  /// `The first 8 digits of the receipt do not match the selected date`
+  String get sinpeMovilDateInvalid {
+    return Intl.message(
+      'The first 8 digits of the receipt do not match the selected date',
+      name: 'sinpeMovilDateInvalid',
+      desc: 'SINPE Móvil date validation error',
+      args: [],
+    );
+  }
+
+  /// `Valid SINPE Móvil receipt: date matches`
+  String get sinpeMovilValid {
+    return Intl.message(
+      'Valid SINPE Móvil receipt: date matches',
+      name: 'sinpeMovilValid',
+      desc: 'SINPE Móvil valid message',
+      args: [],
+    );
+  }
+
+  /// `Financial entity code`
+  String get sinpeMovilEntityCode {
+    return Intl.message(
+      'Financial entity code',
+      name: 'sinpeMovilEntityCode',
+      desc: 'SINPE financial entity code label',
+      args: [],
+    );
+  }
+
+  /// `SINPE Móvil receipt must have at least 11 digits`
+  String get sinpeMovilMinDigits {
+    return Intl.message(
+      'SINPE Móvil receipt must have at least 11 digits',
+      name: 'sinpeMovilMinDigits',
+      desc: 'Minimum digits error for SINPE Móvil',
       args: [],
     );
   }

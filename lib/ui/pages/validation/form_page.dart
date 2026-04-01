@@ -25,10 +25,21 @@ class _FormPageState extends ConsumerState<FormPage> {
   final TextEditingController _comprobanteController = TextEditingController();
   final TextEditingController _cuentaController = TextEditingController();
   String? _mesSeleccionado;
+  String? _diaSeleccionado;
+  bool _isSinpeMovil = false;
+
   void _selectMes(String key) {
     if (!mounted) return;
     setState(() {
       _mesSeleccionado = key;
+    });
+    Navigator.of(context).pop();
+  }
+
+  void _selectDia(String key) {
+    if (!mounted) return;
+    setState(() {
+      _diaSeleccionado = key;
     });
     Navigator.of(context).pop();
   }
@@ -58,10 +69,57 @@ class _FormPageState extends ConsumerState<FormPage> {
       '12': localizations.december,
     };
 
+    // Genera los días del 1 al 31
+    final diasDelMes = <String, String>{
+      for (int i = 1; i <= 31; i++) i.toString().padLeft(2, '0'): i.toString(),
+    };
+
+    /// Valida un comprobante SINPE Móvil.
+    /// Los primeros 8 dígitos deben corresponder a YYYYMMDD de la fecha seleccionada.
+    /// Los siguientes 3 dígitos son el código de la entidad financiera.
+    String? validateSinpeMovil(String reference) {
+      final digitsOnly = reference.replaceAll(RegExp(r'[^0-9]'), '');
+      if (digitsOnly.length < 11) {
+        return localizations.sinpeMovilMinDigits;
+      }
+      final datePrefix = digitsOnly.substring(0, 8);
+      final expectedDate = '2025${_mesSeleccionado ?? ''}${_diaSeleccionado ?? ''}';
+      if (datePrefix != expectedDate) {
+        return localizations.sinpeMovilDateInvalid;
+      }
+      return null; // válido
+    }
+
     /// Valida el formulario y navega mostrando los detalles completos si existe la transacción.
     void validateForm() async {
       if (!mounted) return;
-      final isValid = _formKey.currentState?.validate() == true && _mesSeleccionado != null;
+
+      final isValid = _formKey.currentState?.validate() == true && _mesSeleccionado != null && (!_isSinpeMovil || _diaSeleccionado != null);
+
+      if (_isSinpeMovil && isValid) {
+        final reference = _comprobanteController.text.trim();
+        final sinpeError = validateSinpeMovil(reference);
+        if (sinpeError != null) {
+          // Mostrar resultado inválido para SINPE Móvil
+          ref.read(sinpeMovilResultProvider.notifier).state = (
+            isValid: false,
+            entityCode: '',
+          );
+          ref.read(selectedTransactionProvider.notifier).state = null;
+          context.pushNamed('ValidationResult');
+          return;
+        }
+        // SINPE Móvil válido: los primeros 8 dígitos coinciden con la fecha
+        final entityCode = reference.replaceAll(RegExp(r'[^0-9]'), '').substring(8, 11);
+        ref.read(sinpeMovilResultProvider.notifier).state = (
+          isValid: true,
+          entityCode: entityCode,
+        );
+        ref.read(selectedTransactionProvider.notifier).state = null;
+        context.pushNamed('ValidationResult');
+        return;
+      }
+
       TransactionDetailModel? transaction;
       if (isValid) {
         final reference = _comprobanteController.text.trim();
@@ -76,6 +134,7 @@ class _FormPageState extends ConsumerState<FormPage> {
         transaction = null;
       }
       if (!mounted) return;
+      ref.read(sinpeMovilResultProvider.notifier).state = null;
       ref.read(selectedTransactionProvider.notifier).state = transaction;
       context.pushNamed('ValidationResult');
     }
@@ -100,6 +159,24 @@ class _FormPageState extends ConsumerState<FormPage> {
               illustration: BacIllustrations.codeSms,
               title: localizations.validationFormTitle,
             ),
+            // Toggle SINPE Móvil
+            SwitchListTile(
+              title: Text(
+                localizations.sinpeMovilLabel,
+                style: context.bacTextTheme.body_16Regular,
+              ),
+              value: _isSinpeMovil,
+              onChanged: (value) {
+                if (!mounted) return;
+                setState(() {
+                  _isSinpeMovil = value;
+                  if (!value) {
+                    _diaSeleccionado = null;
+                  }
+                });
+              },
+            ),
+            Spacing.medium24,
             LocalInputText(
               labelText: localizations.validationFormReference,
               controller: _comprobanteController,
@@ -111,18 +188,21 @@ class _FormPageState extends ConsumerState<FormPage> {
                 return null;
               },
             ),
-            Spacing.medium24,
-            LocalInputText(
-              labelText: localizations.validationFormAccount,
-              controller: _cuentaController,
-              textInputAction: TextInputAction.next,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return localizations.fieldRequired;
-                }
-                return null;
-              },
-            ),
+            if (!_isSinpeMovil) ...[
+              Spacing.medium24,
+              LocalInputText(
+                labelText: localizations.validationFormAccount,
+                controller: _cuentaController,
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (_isSinpeMovil) return null;
+                  if (value == null || value.trim().isEmpty) {
+                    return localizations.fieldRequired;
+                  }
+                  return null;
+                },
+              ),
+            ],
             Spacing.medium24,
             Dropdown(
               label: localizations.validationFormMonth,
@@ -155,6 +235,42 @@ class _FormPageState extends ConsumerState<FormPage> {
                 ),
               ),
             ),
+            // Selector de día (solo visible para SINPE Móvil)
+            if (_isSinpeMovil) ...[
+              Spacing.medium24,
+              Dropdown(
+                label: localizations.validationFormDay,
+                text: _diaSeleccionado == null ? localizations.validationFormDay : _diaSeleccionado!,
+                bottomSheet: BaseBottomSheet(
+                  title: localizations.validationFormDay,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(7, (row) {
+                      final start = row * 5;
+                      final end = (start + 5).clamp(0, 31);
+                      if (start >= 31) return const SizedBox.shrink();
+                      final entries = diasDelMes.entries.toList().sublist(start, end);
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: entries
+                            .map((entry) => Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(SpacingTokens.refSpacing02),
+                                    child: BacActionSegmentedButton(
+                                      isSelected: _diaSeleccionado == entry.key,
+                                      title: entry.value,
+                                      titleStyle: context.bacTextTheme.caption_14Regular,
+                                      onTap: () => _selectDia(entry.key),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                      );
+                    }),
+                  ),
+                ),
+              ),
+            ],
             Spacing.medium16,
           ],
         ),

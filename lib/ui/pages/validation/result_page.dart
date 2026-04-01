@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app_localizations_ext.dart';
 import '../../../providers/providers.dart';
 import '../../widgets/widgets.dart';
 
@@ -12,6 +13,42 @@ class ResultPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final localizations = context.localizations;
+    final sinpeResult = ref.watch(sinpeMovilResultProvider);
+
+    // Resultado SINPE Móvil
+    if (sinpeResult != null) {
+      final isValid = sinpeResult.isValid;
+      return FullScreenTemplate(
+        header: Header(
+          title: localizations.validationFormTitle,
+          color: HeaderColor.white,
+        ),
+        hasHorizontalPaddings: false,
+        content: Padding(
+          padding: const EdgeInsets.all(SpacingTokens.refSpacing16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              VisualInformation(
+                illustration: isValid ? BacIllustrations.verifyNumber : BacIllustrations.errorResponseState,
+                title: isValid ? localizations.sinpeMovilValid : localizations.sinpeMovilDateInvalid,
+              ),
+              if (isValid)
+                LineDetail(
+                  label: '${localizations.sinpeMovilEntityCode}:',
+                  description: sinpeResult.entityCode,
+                ),
+            ],
+          ),
+        ),
+        primaryButton: BacPrimaryButton(
+          text: 'Volver',
+          onPressed: () => context.pushNamed('Home'),
+        ),
+      );
+    }
+
     final transaction = ref.watch(selectedTransactionProvider);
     if (transaction != null) {
       return FullScreenTemplate(
