@@ -57,16 +57,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   borderRadius: BorderRadius.zero,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 2 / 3,
-                    child: Image.asset(
-                      Logo.logo,
-                      fit: BoxFit.fitWidth,
-                    ),
+                    child: Image.asset(Logo.logo, fit: BoxFit.fitWidth),
                   ),
                 ),
                 Spacing.medium40,
-                H3(
-                  localizations.bacCodeTitle,
-                ),
+                H3(localizations.bacCodeTitle),
                 Spacing.medium16,
                 InputToken(
                   length: 6,
@@ -98,34 +93,25 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     setState(() => isLoading = true);
 
                     try {
-                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(
-                            codigoBac: codigoBacController.text.trim(),
-                          );
+                      final pushReplacementNamed = context.pushReplacementNamed;
+                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(codigoBac: codigoBacController.text.trim());
                       if (!mounted) return;
                       setState(() => isLoading = false);
 
                       if (success == true) {
                         if (mounted) {
-                          context.pushReplacementNamed('Onboarding');
+                          pushReplacementNamed('Onboarding');
                         }
                       } else {
                         if (mounted) {
-                          BacSnackbarUtils.showSnackbar(
-                            snackbar: BacSnackbar.error(
-                              message: localizations.bacCodeLoginError,
-                            ),
-                          );
+                          BacSnackbarUtils.showSnackbar(snackbar: BacSnackbar.error(message: localizations.bacCodeLoginError));
                         }
                       }
                     } catch (e) {
                       if (!mounted) return;
                       setState(() => isLoading = false);
                       if (mounted) {
-                        BacSnackbarUtils.showSnackbar(
-                          snackbar: const BacSnackbar.error(
-                            message: 'Error de conexión. Inténtalo de nuevo.',
-                          ),
-                        );
+                        BacSnackbarUtils.showSnackbar(snackbar: const BacSnackbar.error(message: 'Error de conexión. Inténtalo de nuevo.'));
                       }
                     }
                   },
@@ -150,10 +136,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   borderRadius: BorderRadius.zero,
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 2 / 3,
-                    child: Image.asset(
-                      Logo.logo,
-                      fit: BoxFit.fitWidth,
-                    ),
+                    child: Image.asset(Logo.logo, fit: BoxFit.fitWidth),
                   ),
                 ),
                 Spacing.medium40,
@@ -191,31 +174,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       setState(() => isLoading = true);
                       final pushReplacementNamed = context.pushReplacementNamed;
 
-                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(
-                            codigoBac: codigoBacController.text.trim(),
-                          );
+                      final success = await ref.read(sessionProvider.notifier).loginWithBacCode(codigoBac: codigoBacController.text.trim());
                       if (!mounted) return;
                       setState(() => isLoading = false);
                       if (success == true) {
                         pushReplacementNamed('Onboarding');
                       } else {
                         if (mounted) {
-                          BacSnackbarUtils.showSnackbar(
-                            snackbar: const BacSnackbar.error(
-                              message: 'Login fallido. Verifica tu código BAC.',
-                            ),
-                          );
+                          BacSnackbarUtils.showSnackbar(snackbar: const BacSnackbar.error(message: 'Login fallido. Verifica tu código BAC.'));
                         }
                       }
                     } catch (e) {
                       if (!mounted) return;
                       setState(() => isLoading = false);
                       if (mounted) {
-                        BacSnackbarUtils.showSnackbar(
-                          snackbar: const BacSnackbar.error(
-                            message: 'Error de conexión. Inténtalo de nuevo.',
-                          ),
-                        );
+                        BacSnackbarUtils.showSnackbar(snackbar: const BacSnackbar.error(message: 'Error de conexión. Inténtalo de nuevo.'));
                       }
                     }
                   },

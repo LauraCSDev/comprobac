@@ -70,9 +70,7 @@ class _FormPageState extends ConsumerState<FormPage> {
     };
 
     // Genera los días del 1 al 31
-    final diasDelMes = <String, String>{
-      for (int i = 1; i <= 31; i++) i.toString().padLeft(2, '0'): i.toString(),
-    };
+    final diasDelMes = <String, String>{for (int i = 1; i <= 31; i++) i.toString().padLeft(2, '0'): i.toString()};
 
     /// Valida un comprobante SINPE Móvil.
     /// Los primeros 8 dígitos deben corresponder a YYYYMMDD de la fecha seleccionada.
@@ -101,20 +99,14 @@ class _FormPageState extends ConsumerState<FormPage> {
         final sinpeError = validateSinpeMovil(reference);
         if (sinpeError != null) {
           // Mostrar resultado inválido para SINPE Móvil
-          ref.read(sinpeMovilResultProvider.notifier).state = (
-            isValid: false,
-            entityCode: '',
-          );
+          ref.read(sinpeMovilResultProvider.notifier).state = (isValid: false, entityCode: '');
           ref.read(selectedTransactionProvider.notifier).state = null;
           context.pushNamed('ValidationResult');
           return;
         }
         // SINPE Móvil válido: los primeros 8 dígitos coinciden con la fecha
         final entityCode = reference.replaceAll(RegExp(r'[^0-9]'), '').substring(8, 11);
-        ref.read(sinpeMovilResultProvider.notifier).state = (
-          isValid: true,
-          entityCode: entityCode,
-        );
+        ref.read(sinpeMovilResultProvider.notifier).state = (isValid: true, entityCode: entityCode);
         ref.read(selectedTransactionProvider.notifier).state = null;
         context.pushNamed('ValidationResult');
         return;
@@ -125,11 +117,7 @@ class _FormPageState extends ConsumerState<FormPage> {
         final reference = _comprobanteController.text.trim();
         final accountNumber = _cuentaController.text.trim();
         final date = '2025-${_mesSeleccionado ?? ''}';
-        transaction = await TransactionDetailDataSource().findTransaction(
-          reference: reference,
-          accountNumber: accountNumber,
-          date: date,
-        );
+        transaction = await TransactionDetailDataSource().findTransaction(reference: reference, accountNumber: accountNumber, date: date);
       } else {
         transaction = null;
       }
@@ -140,31 +128,18 @@ class _FormPageState extends ConsumerState<FormPage> {
     }
 
     return FullScreenTemplate(
-      header: Header(
-        title: localizations.validationFormTitle,
-        color: HeaderColor.white,
-        onTapLeftButton: () => context.pushNamed('Home'),
-      ),
-      primaryButton: BacPrimaryButton(
-        text: localizations.validationFormButton,
-        onPressed: validateForm,
-      ),
+      header: Header(title: localizations.validationFormTitle, color: HeaderColor.overlay, onTapLeftButton: () => context.pushNamed('Home')),
+      primaryButton: BacPrimaryButton(text: localizations.validationFormButton, onPressed: validateForm),
       content: Form(
         key: _formKey,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            VisualInformation(
-              illustration: BacIllustrations.codeSms,
-              title: localizations.validationFormTitle,
-            ),
+            VisualInformation(illustration: BacIllustrations.codeSms, title: localizations.validationFormTitle),
             // Toggle SINPE Móvil
             SwitchListTile(
-              title: Text(
-                localizations.sinpeMovilLabel,
-                style: context.bacTextTheme.body_16Regular,
-              ),
+              title: Text(localizations.sinpeMovilLabel, style: context.bacTextTheme.body_Regular),
               value: _isSinpeMovil,
               onChanged: (value) {
                 if (!mounted) return;
@@ -218,17 +193,19 @@ class _FormPageState extends ConsumerState<FormPage> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: entries
-                          .map((entry) => Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(SpacingTokens.refSpacing02),
-                                  child: BacActionSegmentedButton(
-                                    isSelected: mesesDelAnio[_mesSeleccionado] == entry.value,
-                                    title: entry.value,
-                                    titleStyle: context.bacTextTheme.caption_14Regular,
-                                    onTap: () => _selectMes(entry.key),
-                                  ),
+                          .map(
+                            (entry) => Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(SpacingTokens.refSpacing02),
+                                child: BacActionSegmentedButton(
+                                  isSelected: mesesDelAnio[_mesSeleccionado] == entry.value,
+                                  title: entry.value,
+                                  titleStyle: context.bacTextTheme.caption_Regular,
+                                  onTap: () => _selectMes(entry.key),
                                 ),
-                              ))
+                              ),
+                            ),
+                          )
                           .toList(),
                     );
                   }),
@@ -253,17 +230,19 @@ class _FormPageState extends ConsumerState<FormPage> {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: entries
-                            .map((entry) => Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(SpacingTokens.refSpacing02),
-                                    child: BacActionSegmentedButton(
-                                      isSelected: _diaSeleccionado == entry.key,
-                                      title: entry.value,
-                                      titleStyle: context.bacTextTheme.caption_14Regular,
-                                      onTap: () => _selectDia(entry.key),
-                                    ),
+                            .map(
+                              (entry) => Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(SpacingTokens.refSpacing02),
+                                  child: BacActionSegmentedButton(
+                                    isSelected: _diaSeleccionado == entry.key,
+                                    title: entry.value,
+                                    titleStyle: context.bacTextTheme.caption_Regular,
+                                    onTap: () => _selectDia(entry.key),
                                   ),
-                                ))
+                                ),
+                              ),
+                            )
                             .toList(),
                       );
                     }),

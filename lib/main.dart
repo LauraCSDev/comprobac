@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'generated/l10n.dart';
 import 'router/go_router_config.dart';
 
-void main() {
+void main() async {
   GoRouter routerConfig = GoRouterConfig.getRouterConfig();
 
   runApp(ProviderScope(child: MyApp(routerConfig: routerConfig)));

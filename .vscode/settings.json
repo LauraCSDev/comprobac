@@ -14,5 +14,6 @@
     }
   },
   "dart.lineLength": 160,
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "dart.flutterSdkPath": ".fvm/versions/3.38.1"
 }

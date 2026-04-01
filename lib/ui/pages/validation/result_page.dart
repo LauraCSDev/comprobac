@@ -20,10 +20,7 @@ class ResultPage extends ConsumerWidget {
     if (sinpeResult != null) {
       final isValid = sinpeResult.isValid;
       return FullScreenTemplate(
-        header: Header(
-          title: localizations.validationFormTitle,
-          color: HeaderColor.white,
-        ),
+        header: Header(title: localizations.validationFormTitle, color: HeaderColor.overlay),
         hasHorizontalPaddings: false,
         content: Padding(
           padding: const EdgeInsets.all(SpacingTokens.refSpacing16),
@@ -34,68 +31,37 @@ class ResultPage extends ConsumerWidget {
                 illustration: isValid ? BacIllustrations.verifyNumber : BacIllustrations.errorResponseState,
                 title: isValid ? localizations.sinpeMovilValid : localizations.sinpeMovilDateInvalid,
               ),
-              if (isValid)
-                LineDetail(
-                  label: '${localizations.sinpeMovilEntityCode}:',
-                  description: sinpeResult.entityCode,
-                ),
+              if (isValid) LineDetail(label: '${localizations.sinpeMovilEntityCode}:', description: sinpeResult.entityCode),
             ],
           ),
         ),
-        primaryButton: BacPrimaryButton(
-          text: 'Volver',
-          onPressed: () => context.pushNamed('Home'),
-        ),
+        primaryButton: BacPrimaryButton(text: 'Volver', onPressed: () => context.pushNamed('Home')),
       );
     }
 
     final transaction = ref.watch(selectedTransactionProvider);
     if (transaction != null) {
       return FullScreenTemplate(
-        header: const Header(
-          title: 'Resultado de Validación',
-          color: HeaderColor.white,
-        ),
+        header: const Header(title: 'Resultado de Validación', color: HeaderColor.overlay),
         hasHorizontalPaddings: false,
         content: Padding(
           padding: const EdgeInsets.all(SpacingTokens.refSpacing16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const VisualInformation(
-                illustration: BacIllustrations.verifyNumber,
-                title: 'Comprobante válido',
-              ),
-              LineDetail(
-                label: 'Referencia:',
-                description: transaction.reference,
-              ),
-              LineDetail(
-                label: 'Número de cuenta:',
-                description: transaction.accountNumber,
-              ),
-              LineDetail(
-                label: 'Fecha:',
-                description: transaction.date,
-              ),
+              const VisualInformation(illustration: BacIllustrations.verifyNumber, title: 'Comprobante válido'),
+              LineDetail(label: 'Referencia:', description: transaction.reference),
+              LineDetail(label: 'Número de cuenta:', description: transaction.accountNumber),
+              LineDetail(label: 'Fecha:', description: transaction.date),
               LineDetail(
                 label: 'Monto:',
-                amountTile: AmountTile(
-                  amount: transaction.amount,
-                  currency: CurrencyIsoDs.findCurrencyByIso(transaction.currency),
-                ),
+                amountTile: AmountTile(amount: transaction.amount, currency: CurrencyIsoDs.findCurrencyByIso(transaction.currency)),
               ),
-              LineDetail(
-                label: 'Beneficiario:',
-                description: transaction.beneficiaryName,
-              ),
+              LineDetail(label: 'Beneficiario:', description: transaction.beneficiaryName),
             ],
           ),
         ),
-        primaryButton: BacPrimaryButton(
-          text: 'Volver',
-          onPressed: () => context.pushNamed('Home'),
-        ),
+        primaryButton: BacPrimaryButton(text: 'Volver', onPressed: () => context.pushNamed('Home')),
       );
     } else {
       // Modo Riverpod: obtener el resultado desde el provider
@@ -112,10 +78,7 @@ class _ValidationResultFromProvider extends ConsumerWidget {
       data: (transaction) {
         final isValid = transaction != null;
         return FullScreenTemplate(
-          header: const Header(
-            title: 'Resultado de Validación',
-            color: HeaderColor.white,
-          ),
+          header: const Header(title: 'Resultado de Validación', color: HeaderColor.overlay),
           hasHorizontalPaddings: false,
           content: Padding(
             padding: const EdgeInsets.all(SpacingTokens.refSpacing16),
@@ -127,57 +90,30 @@ class _ValidationResultFromProvider extends ConsumerWidget {
                   title: isValid ? 'Comprobante válido' : 'Comprobante no encontrado o inválido',
                 ),
                 if (isValid) ...[
-                  LineDetail(
-                    label: 'Referencia:',
-                    description: transaction.reference,
-                  ),
-                  LineDetail(
-                    label: 'Número de cuenta:',
-                    description: transaction.accountNumber,
-                  ),
-                  LineDetail(
-                    label: 'Fecha:',
-                    description: transaction.date,
-                  ),
+                  LineDetail(label: 'Referencia:', description: transaction.reference),
+                  LineDetail(label: 'Número de cuenta:', description: transaction.accountNumber),
+                  LineDetail(label: 'Fecha:', description: transaction.date),
                   LineDetail(
                     label: 'Monto:',
-                    amountTile: AmountTile(
-                      amount: transaction.amount,
-                      currency: CurrencyIsoDs.findCurrencyByIso(transaction.currency),
-                    ),
+                    amountTile: AmountTile(amount: transaction.amount, currency: CurrencyIsoDs.findCurrencyByIso(transaction.currency)),
                   ),
-                  LineDetail(
-                    label: 'Beneficiario:',
-                    description: transaction.beneficiaryName,
-                  ),
+                  LineDetail(label: 'Beneficiario:', description: transaction.beneficiaryName),
                 ],
               ],
             ),
           ),
-          primaryButton: BacPrimaryButton(
-            text: 'Volver',
-            onPressed: () => context.pushNamed('Home'),
-          ),
+          primaryButton: BacPrimaryButton(text: 'Volver', onPressed: () => context.pushNamed('Home')),
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (err, stack) => FullScreenTemplate(
-        header: const Header(
-          title: 'Resultado de Validación',
-          color: HeaderColor.white,
-        ),
+        header: const Header(title: 'Resultado de Validación', color: HeaderColor.overlay),
         hasHorizontalPaddings: false,
         content: const Padding(
           padding: EdgeInsets.all(SpacingTokens.refSpacing16),
-          child: VisualInformation(
-            illustration: BacIllustrations.errorResponseState,
-            title: 'Error al validar comprobante.',
-          ),
+          child: VisualInformation(illustration: BacIllustrations.errorResponseState, title: 'Error al validar comprobante.'),
         ),
-        primaryButton: BacPrimaryButton(
-          text: 'Volver',
-          onPressed: () => context.pushNamed('Home'),
-        ),
+        primaryButton: BacPrimaryButton(text: 'Volver', onPressed: () => context.pushNamed('Home')),
       ),
     );
   }

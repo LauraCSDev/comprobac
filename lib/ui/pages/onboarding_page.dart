@@ -48,19 +48,14 @@ OnboardingPage onboardingPage({required BuildContext context, required PageContr
     pageController: pageController,
     iconPath: BacIcons.ionIconPerson,
     title: 'Verifica siempre el destinatario',
-    child: Column(
+    child: const Column(
       children: [
-        Text(
+        Caption(
           'Antes de realizar una transferencia, asegúrate de que el número de cuenta y el nombre del destinatario sean correctos.',
-          style: context.bacTextTheme.caption_14Regular,
           textAlign: TextAlign.center,
         ),
         Spacing.medium16,
-        Text(
-          'No compartas tus datos bancarios con desconocidos.',
-          style: context.bacTextTheme.caption_14Regular,
-          textAlign: TextAlign.center,
-        ),
+        Caption('No compartas tus datos bancarios con desconocidos.', textAlign: TextAlign.center),
       ],
     ),
   );
@@ -74,19 +69,11 @@ OnboardingPage onboardingSecondPage({required BuildContext context, required Pag
     iconPath: BacIcons.messageCircle,
     title: 'Desconfía de mensajes sospechosos',
     linkText: '¿Cómo identificar fraudes?',
-    child: Column(
+    child: const Column(
       children: [
-        Text(
-          'No respondas a correos, llamadas o mensajes que soliciten información personal o códigos de verificación. ',
-          style: context.bacTextTheme.caption_14Regular,
-          textAlign: TextAlign.center,
-        ),
+        Caption('No respondas a correos, llamadas o mensajes que soliciten información personal o códigos de verificación. ', textAlign: TextAlign.center),
         Spacing.medium16,
-        Text(
-          'Los bancos nunca piden estos datos por estos medios.',
-          style: context.bacTextTheme.caption_14Regular,
-          textAlign: TextAlign.center,
-        ),
+        Caption('Los bancos nunca piden estos datos por estos medios.', textAlign: TextAlign.center),
       ],
     ),
   );
@@ -102,19 +89,11 @@ OnboardingPage onboardingFinalPage({required BuildContext context, required Page
     primaryActionTap: () => context.pushNamed('Home'),
     primaryActionText: 'Aceptar',
     linkText: 'Más información',
-    child: Column(
+    child: const Column(
       children: [
-        Text(
-          'Realiza tus transacciones únicamente desde la app o web oficial de tu banco.',
-          style: context.bacTextTheme.caption_14Regular,
-          textAlign: TextAlign.center,
-        ),
+        Caption('Realiza tus transacciones únicamente desde la app o web oficial de tu banco.', textAlign: TextAlign.center),
         Spacing.medium16,
-        Text(
-          'Evita acceder a enlaces enviados por terceros.',
-          style: context.bacTextTheme.caption_14Regular,
-          textAlign: TextAlign.center,
-        ),
+        Caption('Evita acceder a enlaces enviados por terceros.', textAlign: TextAlign.center),
       ],
     ),
   );

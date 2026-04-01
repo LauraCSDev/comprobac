@@ -35,42 +35,36 @@ class _HomePageState extends ConsumerState<HomePage> {
         return FullScreenTemplate(
           hasHorizontalPaddings: false,
           alignTop: true,
-          header: Header.withLogo(
-            title: localizations.appTitle,
-            color: HeaderColor.white,
-            showLeftButton: false,
-          ),
+          header: Header.withLogo(title: localizations.appTitle, color: HeaderColor.overlay, showLeftButton: false),
           content: Column(
             children: [
-              H3(
-                localizations.homeWelcome,
-              ),
+              H3(localizations.homeWelcome),
               Spacing.medium16,
-              BacNavigationWidgetOption(widgetOptionItems: [
-                BacAtomContainmentWidgetOptions(
-                  iconPath: BacIcons.checkCircle,
-                  subtitle: localizations.homeMenuValidate,
-                  alertMessage: localizations.homeMenuValidate,
-                  onTap: () {
-                    context.pushNamed('Validate');
-                  },
-                ),
-                BacAtomContainmentWidgetOptions(
-                  iconPath: BacIcons.checkCircle,
-                  subtitle: localizations.homeMenuServices,
-                  onTap: () {
-                    debugPrint('Servicios tapped');
-                  },
-                ),
-              ]),
+              BacNavigationWidgetOption(
+                widgetOptionItems: [
+                  BacAtomContainmentWidgetOptions(
+                    iconPath: BacIcons.checkCircle,
+                    subtitle: localizations.homeMenuValidate,
+                    alertMessage: localizations.homeMenuValidate,
+                    onTap: () {
+                      context.pushNamed('Validate');
+                    },
+                  ),
+                  BacAtomContainmentWidgetOptions(
+                    iconPath: BacIcons.checkCircle,
+                    subtitle: localizations.homeMenuServices,
+                    onTap: () {
+                      debugPrint('Servicios tapped');
+                    },
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.all(SpacingTokens.refSpacing16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BodyText.medium(
-                      localizations.homeHistoryTitle,
-                    ),
+                    BodyText.medium(localizations.homeHistoryTitle),
                     Spacing.medium16,
                     FutureBuilder<List<TransactionDetailModel>>(
                       future: _transactionsFuture,
@@ -85,9 +79,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) => const SizedBox(
-                            height: SpacingTokens.refSpacing08,
-                          ),
+                          separatorBuilder: (context, index) => const SizedBox(height: SpacingTokens.refSpacing08),
                           itemCount: transactions.length,
                           itemBuilder: (context, index) {
                             final transaction = transactions[index];
@@ -107,10 +99,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 currency: CurrencyIsoDs.CRC,
                                 textColor: index % 2 == 0 ? bacColors.sysColorPositiveText : bacColors.sysColorNeutralTextSemiStrong,
                               ),
-                              widgetRight: BacSvgIcon(
-                                assetIcon: BacIcons.chevronRight,
-                                color: bacColors.sysColorSecondaryIconActionDefault,
-                              ),
+                              widgetRight: BacSvgIcon(assetIcon: BacIcons.chevronRight, color: bacColors.sysColorSecondaryIconActionDefault),
                             );
                           },
                         );
