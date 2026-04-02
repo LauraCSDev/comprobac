@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 
 /// Plantilla de pantalla completa reutilizable para las páginas principales.
 class FullScreenTemplate extends StatefulWidget {
-  final Header? header;
   final Widget content;
+  final String? title;
   final BacPrimaryButton? primaryButton;
   final BacSecondaryButton? secondaryButton;
   final BacGhostButton? ghostButton;
   final BacLink? linkButton;
   final Color? backgroundColor;
   final bool hasHorizontalPaddings;
-  final bool alignTop; // Added alignTop property
+  final bool alignTop;
+  final bool showHeader;
 
   /// Crea una plantilla de pantalla completa con [content] y botones opcionales.
   const FullScreenTemplate({
     super.key,
+    this.title,
     required this.content,
-    this.header,
     this.primaryButton,
     this.secondaryButton,
     this.ghostButton,
@@ -25,7 +26,8 @@ class FullScreenTemplate extends StatefulWidget {
     this.backgroundColor,
     this.hasHorizontalPaddings = true,
     this.alignTop = false, // Default value for alignTop
-  });
+    this.showHeader = true, // Default value for showHeader
+  }) : assert(showHeader == false || title != null, 'El título no puede ser nulo si showHeader es verdadero');
 
   @override
   State<FullScreenTemplate> createState() => _FullScreenTemplateState();
@@ -72,7 +74,7 @@ class _FullScreenTemplateState extends State<FullScreenTemplate> {
 
     return Scaffold(
       backgroundColor: widget.backgroundColor ?? context.bacColorTokens.sysColorWhiteBackground,
-      appBar: widget.header,
+      appBar: Header(color: HeaderColor.surface, title: widget.title),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: LayoutBuilder(
@@ -91,9 +93,7 @@ class _FullScreenTemplateState extends State<FullScreenTemplate> {
                 child: Column(
                   mainAxisAlignment: widget.alignTop ? MainAxisAlignment.start : MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    widget.content,
-                  ],
+                  children: [widget.content],
                 ),
               ),
             );
@@ -102,18 +102,18 @@ class _FullScreenTemplateState extends State<FullScreenTemplate> {
       ),
       bottomNavigationBar: hasButtonPanel
           ? _isScrollable
-              ? ButtonPanel.onScroll(
-                  primaryButton: widget.primaryButton,
-                  secondaryButton: widget.secondaryButton,
-                  ghostButton: widget.ghostButton,
-                  link: widget.linkButton,
-                )
-              : ButtonPanel(
-                  primaryButton: widget.primaryButton,
-                  secondaryButton: widget.secondaryButton,
-                  ghostButton: widget.ghostButton,
-                  link: widget.linkButton,
-                )
+                ? ButtonPanel.onScroll(
+                    primaryButton: widget.primaryButton,
+                    secondaryButton: widget.secondaryButton,
+                    ghostButton: widget.ghostButton,
+                    link: widget.linkButton,
+                  )
+                : ButtonPanel(
+                    primaryButton: widget.primaryButton,
+                    secondaryButton: widget.secondaryButton,
+                    ghostButton: widget.ghostButton,
+                    link: widget.linkButton,
+                  )
           : const SizedBox.shrink(),
     );
   }

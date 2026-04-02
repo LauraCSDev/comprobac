@@ -149,5 +149,101 @@
     "homeMenuServices": "Services",
     "@homeMenuServices": {
         "description": "Menu option for services on the home page"
+    },
+    "connectionError": "Connection error. Please try again.",
+    "@connectionError": {
+        "description": "Connection error message"
+    },
+    "onboardingPage1Title": "Always verify the recipient",
+    "@onboardingPage1Title": {
+        "description": "Onboarding page 1 title"
+    },
+    "onboardingPage1Desc1": "Before making a transfer, make sure the account number and the recipient's name are correct.",
+    "@onboardingPage1Desc1": {
+        "description": "Onboarding page 1 description 1"
+    },
+    "onboardingPage1Desc2": "Do not share your bank details with strangers.",
+    "@onboardingPage1Desc2": {
+        "description": "Onboarding page 1 description 2"
+    },
+    "onboardingPage2Title": "Be wary of suspicious messages",
+    "@onboardingPage2Title": {
+        "description": "Onboarding page 2 title"
+    },
+    "onboardingPage2Link": "How to identify fraud?",
+    "@onboardingPage2Link": {
+        "description": "Onboarding page 2 link"
+    },
+    "onboardingPage2Desc1": "Do not respond to emails, calls, or messages requesting personal information or verification codes.",
+    "@onboardingPage2Desc1": {
+        "description": "Onboarding page 2 description 1"
+    },
+    "onboardingPage2Desc2": "Banks never request this data through these channels.",
+    "@onboardingPage2Desc2": {
+        "description": "Onboarding page 2 description 2"
+    },
+    "onboardingPage3Title": "Use official channels",
+    "@onboardingPage3Title": {
+        "description": "Onboarding page 3 title"
+    },
+    "onboardingAcceptButton": "Accept",
+    "@onboardingAcceptButton": {
+        "description": "Onboarding accept button"
+    },
+    "onboardingMoreInfoLink": "More information",
+    "@onboardingMoreInfoLink": {
+        "description": "Onboarding more information link"
+    },
+    "onboardingPage3Desc1": "Only perform transactions from your bank's official app or website.",
+    "@onboardingPage3Desc1": {
+        "description": "Onboarding page 3 description 1"
+    },
+    "onboardingPage3Desc2": "Avoid accessing links sent by third parties.",
+    "@onboardingPage3Desc2": {
+        "description": "Onboarding page 3 description 2"
+    },
+    "goBack": "Go back",
+    "@goBack": {
+        "description": "Go back button text"
+    },
+    "validationResultTitle": "Validation Result",
+    "@validationResultTitle": {
+        "description": "Validation result page title"
+    },
+    "labelReference": "Reference:",
+    "@labelReference": {
+        "description": "Reference label"
+    },
+    "labelAccountNumber": "Account number:",
+    "@labelAccountNumber": {
+        "description": "Account number label"
+    },
+    "labelDate": "Date:",
+    "@labelDate": {
+        "description": "Date label"
+    },
+    "labelAmount": "Amount:",
+    "@labelAmount": {
+        "description": "Amount label"
+    },
+    "labelBeneficiary": "Beneficiary:",
+    "@labelBeneficiary": {
+        "description": "Beneficiary label"
+    },
+    "validationResultNotFound": "Receipt not found or invalid",
+    "@validationResultNotFound": {
+        "description": "Receipt not found message"
+    },
+    "validationError": "Error validating receipt.",
+    "@validationError": {
+        "description": "Validation error message"
+    },
+    "monthRequired": "Please select a month",
+    "@monthRequired": {
+        "description": "Error when no month is selected"
+    },
+    "dayRequired": "Please select a day",
+    "@dayRequired": {
+        "description": "Error when no day is selected"
     }
 }

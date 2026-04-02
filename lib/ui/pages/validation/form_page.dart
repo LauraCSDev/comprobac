@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app_localizations_ext.dart';
 import '../../../datasources/datasources.dart';
-import '../../../models/models.dart';
 import '../../../providers/providers.dart';
 import '../../widgets/widgets.dart';
 
@@ -81,7 +80,8 @@ class _FormPageState extends ConsumerState<FormPage> {
         return localizations.sinpeMovilMinDigits;
       }
       final datePrefix = digitsOnly.substring(0, 8);
-      final expectedDate = '2025${_mesSeleccionado ?? ''}${_diaSeleccionado ?? ''}';
+      final year = DateTime.now().year;
+      final expectedDate = '$year${_mesSeleccionado ?? ''}${_diaSeleccionado ?? ''}';
       if (datePrefix != expectedDate) {
         return localizations.sinpeMovilDateInvalid;
       }
@@ -92,35 +92,45 @@ class _FormPageState extends ConsumerState<FormPage> {
     void validateForm() async {
       if (!mounted) return;
 
-      final isValid = _formKey.currentState?.validate() == true && _mesSeleccionado != null && (!_isSinpeMovil || _diaSeleccionado != null);
+      final formValid = _formKey.currentState?.validate() == true;
+      if (!formValid) return;
 
-      if (_isSinpeMovil && isValid) {
+      // Validar selección de mes
+      if (_mesSeleccionado == null) {
+        BacSnackbarUtils.showSnackbar(snackbar: BacSnackbar.error(message: localizations.monthRequired));
+        return;
+      }
+
+      // Validar selección de día (solo SINPE Móvil)
+      if (_isSinpeMovil && _diaSeleccionado == null) {
+        BacSnackbarUtils.showSnackbar(snackbar: BacSnackbar.error(message: localizations.dayRequired));
+        return;
+      }
+
+      if (_isSinpeMovil) {
         final reference = _comprobanteController.text.trim();
         final sinpeError = validateSinpeMovil(reference);
         if (sinpeError != null) {
-          // Mostrar resultado inválido para SINPE Móvil
-          ref.read(sinpeMovilResultProvider.notifier).state = (isValid: false, entityCode: '');
+          // Mostrar resultado inválido para SINPE Móvil con el error específico
+          ref.read(sinpeMovilResultProvider.notifier).state = (isValid: false, entityCode: '', errorMessage: sinpeError);
           ref.read(selectedTransactionProvider.notifier).state = null;
           context.pushNamed('ValidationResult');
           return;
         }
         // SINPE Móvil válido: los primeros 8 dígitos coinciden con la fecha
         final entityCode = reference.replaceAll(RegExp(r'[^0-9]'), '').substring(8, 11);
-        ref.read(sinpeMovilResultProvider.notifier).state = (isValid: true, entityCode: entityCode);
+        ref.read(sinpeMovilResultProvider.notifier).state = (isValid: true, entityCode: entityCode, errorMessage: '');
         ref.read(selectedTransactionProvider.notifier).state = null;
         context.pushNamed('ValidationResult');
         return;
       }
 
-      TransactionDetailModel? transaction;
-      if (isValid) {
-        final reference = _comprobanteController.text.trim();
-        final accountNumber = _cuentaController.text.trim();
-        final date = '2025-${_mesSeleccionado ?? ''}';
-        transaction = await TransactionDetailDataSource().findTransaction(reference: reference, accountNumber: accountNumber, date: date);
-      } else {
-        transaction = null;
-      }
+      // Flujo estándar
+      final reference = _comprobanteController.text.trim();
+      final accountNumber = _cuentaController.text.trim();
+      final year = DateTime.now().year;
+      final date = '$year-$_mesSeleccionado';
+      final transaction = await TransactionDetailDataSource().findTransaction(reference: reference, accountNumber: accountNumber, date: date);
       if (!mounted) return;
       ref.read(sinpeMovilResultProvider.notifier).state = null;
       ref.read(selectedTransactionProvider.notifier).state = transaction;
@@ -128,7 +138,7 @@ class _FormPageState extends ConsumerState<FormPage> {
     }
 
     return FullScreenTemplate(
-      header: Header(title: localizations.validationFormTitle, color: HeaderColor.overlay, onTapLeftButton: () => context.pushNamed('Home')),
+      title: localizations.validationFormTitle,
       primaryButton: BacPrimaryButton(text: localizations.validationFormButton, onPressed: validateForm),
       content: Form(
         key: _formKey,
@@ -139,7 +149,7 @@ class _FormPageState extends ConsumerState<FormPage> {
             VisualInformation(illustration: BacIllustrations.codeSms, title: localizations.validationFormTitle),
             // Toggle SINPE Móvil
             SwitchListTile(
-              title: Text(localizations.sinpeMovilLabel, style: context.bacTextTheme.body_Regular),
+              title: BodyText(localizations.sinpeMovilLabel),
               value: _isSinpeMovil,
               onChanged: (value) {
                 if (!mounted) return;
@@ -152,7 +162,7 @@ class _FormPageState extends ConsumerState<FormPage> {
               },
             ),
             Spacing.medium24,
-            LocalInputText(
+            InputText(
               labelText: localizations.validationFormReference,
               controller: _comprobanteController,
               textInputAction: TextInputAction.next,
@@ -165,7 +175,7 @@ class _FormPageState extends ConsumerState<FormPage> {
             ),
             if (!_isSinpeMovil) ...[
               Spacing.medium24,
-              LocalInputText(
+              InputText(
                 labelText: localizations.validationFormAccount,
                 controller: _cuentaController,
                 textInputAction: TextInputAction.next,

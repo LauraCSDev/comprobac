@@ -149,5 +149,101 @@
     "homeMenuServices": "Servicios",
     "@homeMenuServices": {
         "description": "Opción de menú para servicios en la página principal"
+    },
+    "connectionError": "Error de conexión. Inténtalo de nuevo.",
+    "@connectionError": {
+        "description": "Mensaje de error de conexión"
+    },
+    "onboardingPage1Title": "Verifica siempre el destinatario",
+    "@onboardingPage1Title": {
+        "description": "Título onboarding página 1"
+    },
+    "onboardingPage1Desc1": "Antes de realizar una transferencia, asegúrate de que el número de cuenta y el nombre del destinatario sean correctos.",
+    "@onboardingPage1Desc1": {
+        "description": "Descripción 1 onboarding página 1"
+    },
+    "onboardingPage1Desc2": "No compartas tus datos bancarios con desconocidos.",
+    "@onboardingPage1Desc2": {
+        "description": "Descripción 2 onboarding página 1"
+    },
+    "onboardingPage2Title": "Desconfía de mensajes sospechosos",
+    "@onboardingPage2Title": {
+        "description": "Título onboarding página 2"
+    },
+    "onboardingPage2Link": "¿Cómo identificar fraudes?",
+    "@onboardingPage2Link": {
+        "description": "Link onboarding página 2"
+    },
+    "onboardingPage2Desc1": "No respondas a correos, llamadas o mensajes que soliciten información personal o códigos de verificación.",
+    "@onboardingPage2Desc1": {
+        "description": "Descripción 1 onboarding página 2"
+    },
+    "onboardingPage2Desc2": "Los bancos nunca piden estos datos por estos medios.",
+    "@onboardingPage2Desc2": {
+        "description": "Descripción 2 onboarding página 2"
+    },
+    "onboardingPage3Title": "Utiliza canales oficiales",
+    "@onboardingPage3Title": {
+        "description": "Título onboarding página 3"
+    },
+    "onboardingAcceptButton": "Aceptar",
+    "@onboardingAcceptButton": {
+        "description": "Botón aceptar del onboarding"
+    },
+    "onboardingMoreInfoLink": "Más información",
+    "@onboardingMoreInfoLink": {
+        "description": "Link más información del onboarding"
+    },
+    "onboardingPage3Desc1": "Realiza tus transacciones únicamente desde la app o web oficial de tu banco.",
+    "@onboardingPage3Desc1": {
+        "description": "Descripción 1 onboarding página 3"
+    },
+    "onboardingPage3Desc2": "Evita acceder a enlaces enviados por terceros.",
+    "@onboardingPage3Desc2": {
+        "description": "Descripción 2 onboarding página 3"
+    },
+    "goBack": "Volver",
+    "@goBack": {
+        "description": "Texto botón volver"
+    },
+    "validationResultTitle": "Resultado de Validación",
+    "@validationResultTitle": {
+        "description": "Título página resultado de validación"
+    },
+    "labelReference": "Referencia:",
+    "@labelReference": {
+        "description": "Etiqueta referencia"
+    },
+    "labelAccountNumber": "Número de cuenta:",
+    "@labelAccountNumber": {
+        "description": "Etiqueta número de cuenta"
+    },
+    "labelDate": "Fecha:",
+    "@labelDate": {
+        "description": "Etiqueta fecha"
+    },
+    "labelAmount": "Monto:",
+    "@labelAmount": {
+        "description": "Etiqueta monto"
+    },
+    "labelBeneficiary": "Beneficiario:",
+    "@labelBeneficiary": {
+        "description": "Etiqueta beneficiario"
+    },
+    "validationResultNotFound": "Comprobante no encontrado o inválido",
+    "@validationResultNotFound": {
+        "description": "Mensaje comprobante no encontrado"
+    },
+    "validationError": "Error al validar comprobante.",
+    "@validationError": {
+        "description": "Mensaje error de validación"
+    },
+    "monthRequired": "Debe seleccionar un mes",
+    "@monthRequired": {
+        "description": "Error cuando no se selecciona un mes"
+    },
+    "dayRequired": "Debe seleccionar un día",
+    "@dayRequired": {
+        "description": "Error cuando no se selecciona un día"
     }
 }

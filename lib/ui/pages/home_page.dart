@@ -35,14 +35,14 @@ class _HomePageState extends ConsumerState<HomePage> {
         return FullScreenTemplate(
           hasHorizontalPaddings: false,
           alignTop: true,
-          header: Header.withLogo(title: localizations.appTitle, color: HeaderColor.overlay, showLeftButton: false),
+          title: localizations.appTitle,
           content: Column(
             children: [
               H3(localizations.homeWelcome),
               Spacing.medium16,
               BacNavigationWidgetOption(
                 widgetOptionItems: [
-                  BacAtomContainmentWidgetOptions(
+                  BacAtomContainmentWidgetOptions.forGroup(
                     iconPath: BacIcons.checkCircle,
                     subtitle: localizations.homeMenuValidate,
                     alertMessage: localizations.homeMenuValidate,
@@ -50,7 +50,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       context.pushNamed('Validate');
                     },
                   ),
-                  BacAtomContainmentWidgetOptions(
+                  BacAtomContainmentWidgetOptions.forGroup(
                     iconPath: BacIcons.checkCircle,
                     subtitle: localizations.homeMenuServices,
                     onTap: () {
@@ -91,6 +91,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                               titleLeft: localizations.homeReference(transaction.reference),
                               subTextLeft: transaction.date,
                               onTap: () {
+                                ref.read(sinpeMovilResultProvider.notifier).state = null;
                                 ref.read(selectedTransactionProvider.notifier).state = transaction;
                                 context.pushNamed('ValidationResult');
                               },

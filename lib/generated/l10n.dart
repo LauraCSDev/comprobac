@@ -19,10 +19,7 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -42,10 +39,7 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -55,22 +49,12 @@ class S {
 
   /// `Validation history`
   String get homeHistoryTitle {
-    return Intl.message(
-      'Validation history',
-      name: 'homeHistoryTitle',
-      desc: 'Title for the validation history section on the home page',
-      args: [],
-    );
+    return Intl.message('Validation history', name: 'homeHistoryTitle', desc: 'Title for the validation history section on the home page', args: []);
   }
 
   /// `No transactions.`
   String get homeNoTransactions {
-    return Intl.message(
-      'No transactions.',
-      name: 'homeNoTransactions',
-      desc: 'Message when there are no transactions in the list',
-      args: [],
-    );
+    return Intl.message('No transactions.', name: 'homeNoTransactions', desc: 'Message when there are no transactions in the list', args: []);
   }
 
   /// `Reference: {reference}`
@@ -85,62 +69,32 @@ class S {
 
   /// `Comprobac`
   String get appTitle {
-    return Intl.message(
-      'Comprobac',
-      name: 'appTitle',
-      desc: 'App title',
-      args: [],
-    );
+    return Intl.message('Comprobac', name: 'appTitle', desc: 'App title', args: []);
   }
 
   /// `Login`
   String get loginTitle {
-    return Intl.message(
-      'Login',
-      name: 'loginTitle',
-      desc: 'Login page title',
-      args: [],
-    );
+    return Intl.message('Login', name: 'loginTitle', desc: 'Login page title', args: []);
   }
 
   /// `Sign In`
   String get loginButton {
-    return Intl.message(
-      'Sign In',
-      name: 'loginButton',
-      desc: 'Login button text',
-      args: [],
-    );
+    return Intl.message('Sign In', name: 'loginButton', desc: 'Login button text', args: []);
   }
 
   /// `Avoid bank fraud`
   String get onboardingTitle1 {
-    return Intl.message(
-      'Avoid bank fraud',
-      name: 'onboardingTitle1',
-      desc: 'Onboarding page 1 title',
-      args: [],
-    );
+    return Intl.message('Avoid bank fraud', name: 'onboardingTitle1', desc: 'Onboarding page 1 title', args: []);
   }
 
   /// `Never share your bank details with strangers.`
   String get onboardingDesc1 {
-    return Intl.message(
-      'Never share your bank details with strangers.',
-      name: 'onboardingDesc1',
-      desc: 'Onboarding page 1 description',
-      args: [],
-    );
+    return Intl.message('Never share your bank details with strangers.', name: 'onboardingDesc1', desc: 'Onboarding page 1 description', args: []);
   }
 
   /// `Verify references`
   String get onboardingTitle2 {
-    return Intl.message(
-      'Verify references',
-      name: 'onboardingTitle2',
-      desc: 'Onboarding page 2 title',
-      args: [],
-    );
+    return Intl.message('Verify references', name: 'onboardingTitle2', desc: 'Onboarding page 2 title', args: []);
   }
 
   /// `Make sure to validate the receipt before accepting a transfer.`
@@ -155,12 +109,7 @@ class S {
 
   /// `Report suspicious activity`
   String get onboardingTitle3 {
-    return Intl.message(
-      'Report suspicious activity',
-      name: 'onboardingTitle3',
-      desc: 'Onboarding page 3 title',
-      args: [],
-    );
+    return Intl.message('Report suspicious activity', name: 'onboardingTitle3', desc: 'Onboarding page 3 title', args: []);
   }
 
   /// `If you detect anything unusual, report it to your bank immediately.`
@@ -175,112 +124,57 @@ class S {
 
   /// `Validate transaction`
   String get homeMenuValidate {
-    return Intl.message(
-      'Validate transaction',
-      name: 'homeMenuValidate',
-      desc: 'Home menu validate transaction option',
-      args: [],
-    );
+    return Intl.message('Validate transaction', name: 'homeMenuValidate', desc: 'Home menu validate transaction option', args: []);
   }
 
   /// `Validate Receipt`
   String get validationFormTitle {
-    return Intl.message(
-      'Validate Receipt',
-      name: 'validationFormTitle',
-      desc: 'Validation form title',
-      args: [],
-    );
+    return Intl.message('Validate Receipt', name: 'validationFormTitle', desc: 'Validation form title', args: []);
   }
 
   /// `Receipt Number`
   String get validationFormReference {
-    return Intl.message(
-      'Receipt Number',
-      name: 'validationFormReference',
-      desc: 'Validation form reference number label',
-      args: [],
-    );
+    return Intl.message('Receipt Number', name: 'validationFormReference', desc: 'Validation form reference number label', args: []);
   }
 
   /// `Account Number to Credit`
   String get validationFormAccount {
-    return Intl.message(
-      'Account Number to Credit',
-      name: 'validationFormAccount',
-      desc: 'Validation form account number label',
-      args: [],
-    );
+    return Intl.message('Account Number to Credit', name: 'validationFormAccount', desc: 'Validation form account number label', args: []);
   }
 
   /// `Select Month`
   String get validationFormMonth {
-    return Intl.message(
-      'Select Month',
-      name: 'validationFormMonth',
-      desc: 'Validation form select month label',
-      args: [],
-    );
+    return Intl.message('Select Month', name: 'validationFormMonth', desc: 'Validation form select month label', args: []);
   }
 
   /// `Validate`
   String get validationFormButton {
-    return Intl.message(
-      'Validate',
-      name: 'validationFormButton',
-      desc: 'Validation form button text',
-      args: [],
-    );
+    return Intl.message('Validate', name: 'validationFormButton', desc: 'Validation form button text', args: []);
   }
 
   /// `Valid receipt`
   String get validationResultValid {
-    return Intl.message(
-      'Valid receipt',
-      name: 'validationResultValid',
-      desc: 'Validation result valid message',
-      args: [],
-    );
+    return Intl.message('Valid receipt', name: 'validationResultValid', desc: 'Validation result valid message', args: []);
   }
 
   /// `Invalid receipt`
   String get validationResultInvalid {
-    return Intl.message(
-      'Invalid receipt',
-      name: 'validationResultInvalid',
-      desc: 'Validation result invalid message',
-      args: [],
-    );
+    return Intl.message('Invalid receipt', name: 'validationResultInvalid', desc: 'Validation result invalid message', args: []);
   }
 
   /// `Logout`
   String get logout {
-    return Intl.message(
-      'Logout',
-      name: 'logout',
-      desc: 'Logout button text',
-      args: [],
-    );
+    return Intl.message('Logout', name: 'logout', desc: 'Logout button text', args: []);
   }
 
   /// `January`
   String get january {
-    return Intl.message(
-      'January',
-      name: 'january',
-      desc: 'Month January',
-      args: [],
-    );
+    return Intl.message('January', name: 'january', desc: 'Month January', args: []);
   }
 
   /// `February`
   String get february {
-    return Intl.message(
-      'February',
-      name: 'february',
-      desc: 'Month February',
-      args: [],
-    );
+    return Intl.message('February', name: 'february', desc: 'Month February', args: []);
   }
 
   /// `March`
@@ -310,92 +204,47 @@ class S {
 
   /// `August`
   String get august {
-    return Intl.message(
-      'August',
-      name: 'august',
-      desc: 'Month August',
-      args: [],
-    );
+    return Intl.message('August', name: 'august', desc: 'Month August', args: []);
   }
 
   /// `September`
   String get september {
-    return Intl.message(
-      'September',
-      name: 'september',
-      desc: 'Month September',
-      args: [],
-    );
+    return Intl.message('September', name: 'september', desc: 'Month September', args: []);
   }
 
   /// `October`
   String get october {
-    return Intl.message(
-      'October',
-      name: 'october',
-      desc: 'Month October',
-      args: [],
-    );
+    return Intl.message('October', name: 'october', desc: 'Month October', args: []);
   }
 
   /// `November`
   String get november {
-    return Intl.message(
-      'November',
-      name: 'november',
-      desc: 'Month November',
-      args: [],
-    );
+    return Intl.message('November', name: 'november', desc: 'Month November', args: []);
   }
 
   /// `December`
   String get december {
-    return Intl.message(
-      'December',
-      name: 'december',
-      desc: 'Month December',
-      args: [],
-    );
+    return Intl.message('December', name: 'december', desc: 'Month December', args: []);
   }
 
   /// `This field is required`
   String get fieldRequired {
-    return Intl.message(
-      'This field is required',
-      name: 'fieldRequired',
-      desc: 'Field required validation message',
-      args: [],
-    );
+    return Intl.message('This field is required', name: 'fieldRequired', desc: 'Field required validation message', args: []);
   }
 
   /// `BAC Code`
   String get bacCodeTitle {
-    return Intl.message(
-      'BAC Code',
-      name: 'bacCodeTitle',
-      desc: 'Title for BAC code',
-      args: [],
-    );
+    return Intl.message('BAC Code', name: 'bacCodeTitle', desc: 'Title for BAC code', args: []);
   }
 
   /// `Enter your 6-digit BAC code`
   String get bacCodeLabel {
-    return Intl.message(
-      'Enter your 6-digit BAC code',
-      name: 'bacCodeLabel',
-      desc: 'Label for BAC code field',
-      args: [],
-    );
+    return Intl.message('Enter your 6-digit BAC code', name: 'bacCodeLabel', desc: 'Label for BAC code field', args: []);
   }
 
   /// `BAC code must have 6 digits`
   String get bacCodeSixDigitsError {
-    return Intl.message(
-      'BAC code must have 6 digits',
-      name: 'bacCodeSixDigitsError',
-      desc: 'Error when BAC code doesn\'t have 6 digits',
-      args: [],
-    );
+    return Intl.message('BAC code must have 6 digits', name: 'bacCodeSixDigitsError', desc: 'Error when BAC code doesn\'t have 6 digits', args: []);
   }
 
   /// `BAC code must contain only numbers`
@@ -410,52 +259,27 @@ class S {
 
   /// `Login failed. Verify your BAC code.`
   String get bacCodeLoginError {
-    return Intl.message(
-      'Login failed. Verify your BAC code.',
-      name: 'bacCodeLoginError',
-      desc: 'BAC code login error',
-      args: [],
-    );
+    return Intl.message('Login failed. Verify your BAC code.', name: 'bacCodeLoginError', desc: 'BAC code login error', args: []);
   }
 
   /// `Welcome!`
   String get homeWelcome {
-    return Intl.message(
-      'Welcome!',
-      name: 'homeWelcome',
-      desc: 'Welcome message on the home page',
-      args: [],
-    );
+    return Intl.message('Welcome!', name: 'homeWelcome', desc: 'Welcome message on the home page', args: []);
   }
 
   /// `Services`
   String get homeMenuServices {
-    return Intl.message(
-      'Services',
-      name: 'homeMenuServices',
-      desc: 'Menu option for services on the home page',
-      args: [],
-    );
+    return Intl.message('Services', name: 'homeMenuServices', desc: 'Menu option for services on the home page', args: []);
   }
 
   /// `Is SINPE Móvil`
   String get sinpeMovilLabel {
-    return Intl.message(
-      'Is SINPE Móvil',
-      name: 'sinpeMovilLabel',
-      desc: 'Label for SINPE Móvil field',
-      args: [],
-    );
+    return Intl.message('Is SINPE Móvil', name: 'sinpeMovilLabel', desc: 'Label for SINPE Móvil field', args: []);
   }
 
   /// `Select Day`
   String get validationFormDay {
-    return Intl.message(
-      'Select Day',
-      name: 'validationFormDay',
-      desc: 'Select day label',
-      args: [],
-    );
+    return Intl.message('Select Day', name: 'validationFormDay', desc: 'Select day label', args: []);
   }
 
   /// `The first 8 digits of the receipt do not match the selected date`
@@ -470,22 +294,12 @@ class S {
 
   /// `Valid SINPE Móvil receipt: date matches`
   String get sinpeMovilValid {
-    return Intl.message(
-      'Valid SINPE Móvil receipt: date matches',
-      name: 'sinpeMovilValid',
-      desc: 'SINPE Móvil valid message',
-      args: [],
-    );
+    return Intl.message('Valid SINPE Móvil receipt: date matches', name: 'sinpeMovilValid', desc: 'SINPE Móvil valid message', args: []);
   }
 
   /// `Financial entity code`
   String get sinpeMovilEntityCode {
-    return Intl.message(
-      'Financial entity code',
-      name: 'sinpeMovilEntityCode',
-      desc: 'SINPE financial entity code label',
-      args: [],
-    );
+    return Intl.message('Financial entity code', name: 'sinpeMovilEntityCode', desc: 'SINPE financial entity code label', args: []);
   }
 
   /// `SINPE Móvil receipt must have at least 11 digits`
@@ -497,16 +311,153 @@ class S {
       args: [],
     );
   }
+
+  /// `Connection error. Please try again.`
+  String get connectionError {
+    return Intl.message('Connection error. Please try again.', name: 'connectionError', desc: 'Connection error message', args: []);
+  }
+
+  /// `Always verify the recipient`
+  String get onboardingPage1Title {
+    return Intl.message('Always verify the recipient', name: 'onboardingPage1Title', desc: 'Onboarding page 1 title', args: []);
+  }
+
+  /// `Before making a transfer, make sure the account number and the recipient's name are correct.`
+  String get onboardingPage1Desc1 {
+    return Intl.message(
+      'Before making a transfer, make sure the account number and the recipient\'s name are correct.',
+      name: 'onboardingPage1Desc1',
+      desc: 'Onboarding page 1 description 1',
+      args: [],
+    );
+  }
+
+  /// `Do not share your bank details with strangers.`
+  String get onboardingPage1Desc2 {
+    return Intl.message('Do not share your bank details with strangers.', name: 'onboardingPage1Desc2', desc: 'Onboarding page 1 description 2', args: []);
+  }
+
+  /// `Be wary of suspicious messages`
+  String get onboardingPage2Title {
+    return Intl.message('Be wary of suspicious messages', name: 'onboardingPage2Title', desc: 'Onboarding page 2 title', args: []);
+  }
+
+  /// `How to identify fraud?`
+  String get onboardingPage2Link {
+    return Intl.message('How to identify fraud?', name: 'onboardingPage2Link', desc: 'Onboarding page 2 link', args: []);
+  }
+
+  /// `Do not respond to emails, calls, or messages requesting personal information or verification codes.`
+  String get onboardingPage2Desc1 {
+    return Intl.message(
+      'Do not respond to emails, calls, or messages requesting personal information or verification codes.',
+      name: 'onboardingPage2Desc1',
+      desc: 'Onboarding page 2 description 1',
+      args: [],
+    );
+  }
+
+  /// `Banks never request this data through these channels.`
+  String get onboardingPage2Desc2 {
+    return Intl.message(
+      'Banks never request this data through these channels.',
+      name: 'onboardingPage2Desc2',
+      desc: 'Onboarding page 2 description 2',
+      args: [],
+    );
+  }
+
+  /// `Use official channels`
+  String get onboardingPage3Title {
+    return Intl.message('Use official channels', name: 'onboardingPage3Title', desc: 'Onboarding page 3 title', args: []);
+  }
+
+  /// `Accept`
+  String get onboardingAcceptButton {
+    return Intl.message('Accept', name: 'onboardingAcceptButton', desc: 'Onboarding accept button', args: []);
+  }
+
+  /// `More information`
+  String get onboardingMoreInfoLink {
+    return Intl.message('More information', name: 'onboardingMoreInfoLink', desc: 'Onboarding more information link', args: []);
+  }
+
+  /// `Only perform transactions from your bank's official app or website.`
+  String get onboardingPage3Desc1 {
+    return Intl.message(
+      'Only perform transactions from your bank\'s official app or website.',
+      name: 'onboardingPage3Desc1',
+      desc: 'Onboarding page 3 description 1',
+      args: [],
+    );
+  }
+
+  /// `Avoid accessing links sent by third parties.`
+  String get onboardingPage3Desc2 {
+    return Intl.message('Avoid accessing links sent by third parties.', name: 'onboardingPage3Desc2', desc: 'Onboarding page 3 description 2', args: []);
+  }
+
+  /// `Go back`
+  String get goBack {
+    return Intl.message('Go back', name: 'goBack', desc: 'Go back button text', args: []);
+  }
+
+  /// `Validation Result`
+  String get validationResultTitle {
+    return Intl.message('Validation Result', name: 'validationResultTitle', desc: 'Validation result page title', args: []);
+  }
+
+  /// `Reference:`
+  String get labelReference {
+    return Intl.message('Reference:', name: 'labelReference', desc: 'Reference label', args: []);
+  }
+
+  /// `Account number:`
+  String get labelAccountNumber {
+    return Intl.message('Account number:', name: 'labelAccountNumber', desc: 'Account number label', args: []);
+  }
+
+  /// `Date:`
+  String get labelDate {
+    return Intl.message('Date:', name: 'labelDate', desc: 'Date label', args: []);
+  }
+
+  /// `Amount:`
+  String get labelAmount {
+    return Intl.message('Amount:', name: 'labelAmount', desc: 'Amount label', args: []);
+  }
+
+  /// `Beneficiary:`
+  String get labelBeneficiary {
+    return Intl.message('Beneficiary:', name: 'labelBeneficiary', desc: 'Beneficiary label', args: []);
+  }
+
+  /// `Receipt not found or invalid`
+  String get validationResultNotFound {
+    return Intl.message('Receipt not found or invalid', name: 'validationResultNotFound', desc: 'Receipt not found message', args: []);
+  }
+
+  /// `Error validating receipt.`
+  String get validationError {
+    return Intl.message('Error validating receipt.', name: 'validationError', desc: 'Validation error message', args: []);
+  }
+
+  /// `Please select a month`
+  String get monthRequired {
+    return Intl.message('Please select a month', name: 'monthRequired', desc: 'Error when no month is selected', args: []);
+  }
+
+  /// `Please select a day`
+  String get dayRequired {
+    return Intl.message('Please select a day', name: 'dayRequired', desc: 'Error when no day is selected', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'es'),
-    ];
+    return const <Locale>[Locale.fromSubtags(languageCode: 'en'), Locale.fromSubtags(languageCode: 'es')];
   }
 
   @override

@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: BacThemeManager.buildLightTheme(),
       localizationsDelegates: const [
         S.delegate,
+        DsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

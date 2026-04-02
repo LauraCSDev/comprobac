@@ -2,6 +2,9 @@ import 'package:bancadigital_bm_red_designsystem/bancadigital_bm_red_designsyste
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app_localizations_ext.dart';
+import '../../generated/l10n.dart';
+
 /// Onboarding con tres páginas de información antifraude.
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -22,6 +25,7 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = context.localizations;
     return OnboardingTemplate(
       onGoBack: () {},
       onClose: () => context.pop(),
@@ -33,67 +37,64 @@ class _OnboardingState extends State<Onboarding> {
       counterIndex: counterIndex,
       pageController: _pageController,
       pages: [
-        onboardingPage(context: context, pageController: _pageController),
-        onboardingSecondPage(context: context, pageController: _pageController),
-        onboardingFinalPage(context: context, pageController: _pageController),
+        onboardingPage(context: context, pageController: _pageController, localizations: localizations),
+        onboardingSecondPage(context: context, pageController: _pageController, localizations: localizations),
+        onboardingFinalPage(context: context, pageController: _pageController, localizations: localizations),
       ],
     );
   }
 }
 
 /// Primera página del onboarding antifraude.
-OnboardingPage onboardingPage({required BuildContext context, required PageController pageController}) {
+OnboardingPage onboardingPage({required BuildContext context, required PageController pageController, required S localizations}) {
   return OnboardingPage(
     illustration: const BacSvgIcon(assetIcon: BacIllustrations.newUser, isIllustration: true, illustrationSize: IllustrationSize.standardMedium),
     pageController: pageController,
     iconPath: BacIcons.ionIconPerson,
-    title: 'Verifica siempre el destinatario',
-    child: const Column(
+    title: localizations.onboardingPage1Title,
+    child: Column(
       children: [
-        Caption(
-          'Antes de realizar una transferencia, asegúrate de que el número de cuenta y el nombre del destinatario sean correctos.',
-          textAlign: TextAlign.center,
-        ),
+        Caption(localizations.onboardingPage1Desc1, textAlign: TextAlign.center),
         Spacing.medium16,
-        Caption('No compartas tus datos bancarios con desconocidos.', textAlign: TextAlign.center),
+        Caption(localizations.onboardingPage1Desc2, textAlign: TextAlign.center),
       ],
     ),
   );
 }
 
 /// Segunda página del onboarding antifraude.
-OnboardingPage onboardingSecondPage({required BuildContext context, required PageController pageController}) {
+OnboardingPage onboardingSecondPage({required BuildContext context, required PageController pageController, required S localizations}) {
   return OnboardingPage(
     illustration: const BacSvgIcon(assetIcon: BacIllustrations.codeSms, isIllustration: true, illustrationSize: IllustrationSize.standardMedium),
     pageController: pageController,
     iconPath: BacIcons.messageCircle,
-    title: 'Desconfía de mensajes sospechosos',
-    linkText: '¿Cómo identificar fraudes?',
-    child: const Column(
+    title: localizations.onboardingPage2Title,
+    linkText: localizations.onboardingPage2Link,
+    child: Column(
       children: [
-        Caption('No respondas a correos, llamadas o mensajes que soliciten información personal o códigos de verificación. ', textAlign: TextAlign.center),
+        Caption(localizations.onboardingPage2Desc1, textAlign: TextAlign.center),
         Spacing.medium16,
-        Caption('Los bancos nunca piden estos datos por estos medios.', textAlign: TextAlign.center),
+        Caption(localizations.onboardingPage2Desc2, textAlign: TextAlign.center),
       ],
     ),
   );
 }
 
 /// Última página del onboarding antifraude.
-OnboardingPage onboardingFinalPage({required BuildContext context, required PageController pageController}) {
+OnboardingPage onboardingFinalPage({required BuildContext context, required PageController pageController, required S localizations}) {
   return OnboardingPage.finalStep(
     illustration: const BacSvgIcon(assetIcon: BacIllustrations.userInfo, isIllustration: true, illustrationSize: IllustrationSize.standardLarge),
     pageController: pageController,
     iconPath: BacIcons.mailOpened,
-    title: 'Utiliza canales oficiales',
+    title: localizations.onboardingPage3Title,
     primaryActionTap: () => context.pushNamed('Home'),
-    primaryActionText: 'Aceptar',
-    linkText: 'Más información',
-    child: const Column(
+    primaryActionText: localizations.onboardingAcceptButton,
+    linkText: localizations.onboardingMoreInfoLink,
+    child: Column(
       children: [
-        Caption('Realiza tus transacciones únicamente desde la app o web oficial de tu banco.', textAlign: TextAlign.center),
+        Caption(localizations.onboardingPage3Desc1, textAlign: TextAlign.center),
         Spacing.medium16,
-        Caption('Evita acceder a enlaces enviados por terceros.', textAlign: TextAlign.center),
+        Caption(localizations.onboardingPage3Desc2, textAlign: TextAlign.center),
       ],
     ),
   );
